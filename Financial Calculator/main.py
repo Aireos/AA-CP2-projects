@@ -1,4 +1,8 @@
-
+def interest_calc(interest_amount, interest, month_number):
+    interest_amount = ((interest_amount*interest)+interest_amount)
+    month_number += 1
+    print("After", month_number, "month you will have:", interest_amount)
+    return interest_amount, month_number
 
 print("1= Goal Tester, 2= Compound Interest Calculator, 3= Budget Allocator, 4= Sale Price Calculator, 5= Tip Calculator")
 choice_input = int(input("what would you like to do?: "))
@@ -19,9 +23,20 @@ if choice_input == 1:
         print("It will take you", goal_timeline, "month(s) to get to your goal.")
 
 if choice_input == 2:
+    month_number = 0
     interest_amount = int(input("How much money is having interest?: "))
     interest = int(input("What is the interest percentage?: "))
     interest = interest/100
+    while month_number < 10:
+        interest_amount, month_number = interest_calc(interest_amount, interest, month_number)
 
-    interest_amount = interest_amount*interest
-    print("After" month_number, "month you will have:" (interest_amount))
+if choice_input == 3:
+    allocations_list = []
+    budget = int(input("How much money are you allocating?: "))
+    allocations = int(input("How many things are you allocating to?: "))
+    while allocations > 0:
+        allocation_name = input("what is the name for this allocation?: ")
+        allocation_amount = int(input("What percentage are you putting into this allocation?: "))
+        allocation_list = [allocation_name, allocation_amount]
+        allocations_list += allocation_list
+        
