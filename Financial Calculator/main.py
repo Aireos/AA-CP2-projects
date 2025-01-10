@@ -2,7 +2,8 @@
 
 
 def interest_calc(interest_amount, interest, month_number):
-    interest_amount = ((interest_amount*interest)+interest_amount)
+    interest_amount = (interest_amount*interest)+interest_amount
+    interest_amount = "{0:.2f}".format(interest_amount)
     month_number += 1
     print("After", month_number, "month you will have:", interest_amount)
     return interest_amount, month_number
@@ -35,7 +36,8 @@ def main():
                     
                 Goal_Timeline = int(goal/deposit)
                 print("It will take you", Goal_Timeline, "week(s) to get to your goal.")
-        
+                continue
+
             if week_or_monthly == 2:
                 deposit = type_fixer((input("How much are you planning on depositing every month?: ")))
                 if deposit == False: continue
@@ -44,18 +46,20 @@ def main():
                     
                 goal_timeline = int(goal/deposit)
                 print("It will take you", goal_timeline, "month(s) to get to your goal.")
-
+                continue
         
         if choice_input == 2:
             month_number = 0
             interest_amount = type_fixer(input("How much money is having interest?: "))
             if interest_amount == False: continue
-            interest = type_fixer((input("What is the interest percentage?: ")))
+            interest = type_fixer(input("What is the interest percentage?: "))
             if interest == False: continue
                 
             interest = interest/100
             while month_number < 10:
                 interest_amount, month_number = interest_calc(interest_amount, interest, month_number)
+                interest_amount = type_fixer(interest_amount)
+            continue
 
         
         if choice_input == 3:
@@ -91,7 +95,8 @@ def main():
                 list += allocation_amount
                 
             for list in allocations_list:
-                print("You will be putting", list[2], "in", list[0] + ".")
+                print("You will be putting", list[2], "in", list[0])
+            continue
 
         
         if choice_input == 4:
@@ -102,7 +107,8 @@ def main():
                 
             discount_percentage = discount_percentage/100
             final_price = original_price*discount_percentage
-            print("The price of the product is", final_price + "$.")
+            print("The price of the product is", final_price)
+            continue
 
         
         if choice_input == 5:
@@ -113,7 +119,8 @@ def main():
                 
             tip_percentage = tip_percentage/100
             after_tip = tip_percentage*before_tip
-            print("The final price will be", afer_tip + ".")
+            print("The final price will be", after_tip)
+            continue
 
         
         if choice_input == 6:
