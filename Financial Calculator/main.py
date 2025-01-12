@@ -57,7 +57,7 @@ def main():
                 continue
         
         #Compound Interest Calculator
-        if choice_input == 2:
+        elif choice_input == 2:
             month_number = 0
             interest_amount = type_fixer(input("How much money is having interest?: "))
             if interest_amount == False: 
@@ -72,7 +72,7 @@ def main():
             continue
 
         #Budget allocator
-        if choice_input == 3:
+        elif choice_input == 3:
             hundred_p = False
             allocations_list = []
             precentage_total = 0
@@ -108,7 +108,7 @@ def main():
                 print("You can't have over 100%!")
                 continue
 
-            if precentage_total < 1:
+            elif precentage_total < 1:
                 print("You can't have under 100%!")
                 continue
                 
@@ -121,7 +121,7 @@ def main():
             continue
 
         #Sale Price Calculator
-        if choice_input == 4:
+        elif choice_input == 4:
             original_price = type_fixer(input("What is the original price for the item?: "))
             if original_price == False: 
                 continue
@@ -134,7 +134,7 @@ def main():
             continue
 
         #Tip Calculator
-        if choice_input == 5:
+        elif choice_input == 5:
             before_tip = type_fixer(input("What was the orginal price?: "))
             if before_tip == False: 
                 continue
@@ -148,7 +148,7 @@ def main():
             continue
 
         #break statement
-        if choice_input == 6:
+        elif choice_input == 6:
             print("Thanks for using my financial calculator, and have a good day!")
             break
 
