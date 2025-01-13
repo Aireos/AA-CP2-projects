@@ -87,14 +87,14 @@ def main():
             while allocations > 0 and hundred_p == False:
                 allocations -= 1
                 allocation_name = input("What is the name for this allocation?: ")
-                allocation_percentage = int(input("What percentage are you putting into this allocation?: "))
-                if allocation_percentage == 100:
+                percentage = int(input("What percentage are you putting into this allocation?: "))
+                if percentage == 100:
                     print("Just put that much money into it!")
                     hundred_p = True
                     break
                 print()
-                allocation_percentage = allocation_percentage/100
-                allocation_list = [allocation_name, allocation_percentage]
+                percentage = percentage/100
+                allocation_list = [allocation_name, percentage]
                 allocations_list.append(allocation_list)
 
             if hundred_p == True:
