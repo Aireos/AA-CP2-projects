@@ -30,9 +30,9 @@ def main():
 
         #goal tester
         if choice_input == 1:
-            week_or_monthly = int(input("Would you like to base it on weekly or monthly deposits?(type 1 for weekly and type 2 for monthly): "))
+            week_month = int(input("Would you like to base it on weekly or monthly deposits?(type 1 for weekly and type 2 for monthly): "))
         
-            if week_or_monthly == 1:
+            if week_month == 1:
                 deposit = type_fixer((input("How much are you planning on depositing every week?: ")))
                 if deposit == False: 
                     continue
@@ -44,7 +44,7 @@ def main():
                 print("It will take you", Goal_Timeline, "week(s) to get to your goal.")
                 continue
 
-            if week_or_monthly == 2:
+            if week_month == 2:
                 deposit = type_fixer((input("How much are you planning on depositing every month?: ")))
                 if deposit == False: 
                     continue
@@ -64,8 +64,7 @@ def main():
                 continue
             interest = type_fixer(input("What is the interest percentage?: "))
             if interest == False: 
-                continue
-                
+                continue                
             interest = interest/100
             while month_number < 10:
                 interest_amount, month_number = interest_calc(interest_amount, interest, month_number)
@@ -125,11 +124,11 @@ def main():
             original_price = type_fixer(input("What is the original price for the item?: "))
             if original_price == False: 
                 continue
-            discount_percentage = type_fixer(input("What is your total percentage off?: "))
-            if discount_percentage == False:
+            discount = type_fixer(input("What is your total percentage off?: "))
+            if discount == False:
                 continue                
-            discount_percentage = discount_percentage/100
-            final_price = original_price - (original_price*discount_percentage)
+            discount = discount/100
+            final_price = original_price - (original_price*discount)
             print("The price of the product is", final_price)
             continue
 
@@ -138,12 +137,11 @@ def main():
             before_tip = type_fixer(input("What was the orginal price?: "))
             if before_tip == False: 
                 continue
-            tip_percentage = type_fixer(input("What is the precentage you want to tip?: "))
-            if tip_percentage == False: 
-                continue
-                
-            tip_percentage = tip_percentage/100
-            after_tip = before_tip + (tip_percentage*before_tip)
+            tip = type_fixer(input("What is the precentage you want to tip?: "))
+            if tip == False: 
+                continue                
+            tip = tip/100
+            after_tip = before_tip + (tip*before_tip)
             print("The final price will be", after_tip)
             continue
 
