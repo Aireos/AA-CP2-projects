@@ -1,6 +1,6 @@
-#Alex Anderson Financial Calculator
+# Alex Anderson Financial Calculator
 
-#needed throught the program to change numbers from intigers to floats and from floats to intigers
+# needed throught the program to change numbers from intigers to floats and from floats to intigers
 def type_fixer(text):
     try:
         if "." in text:
@@ -13,7 +13,7 @@ def type_fixer(text):
         print("Invalid input")
         return False
 
-#used in 2(Compound Interest Calculator)        
+# used in #2(Compound Interest Calculator)        
 def interest_calc(interest_amount, interest, month_number):
     interest_amount = (interest_amount*interest)+interest_amount
     interest_amount = "{0:.2f}".format(interest_amount)
@@ -21,6 +21,7 @@ def interest_calc(interest_amount, interest, month_number):
     month_number += 1
     print("After", month_number, "month(s) you will have:", interest_amount)
     return interest_amount, month_number
+
 
 def goal_tester():
     week_month = int(input("Would you like to base it on weekly or monthly deposits?(type 1 for weekly and type 2 for monthly): "))        
@@ -44,6 +45,7 @@ def goal_tester():
         goal_timeline = int(goal/deposit)
         print("It will take you", goal_timeline, "month(s) to get to your goal.")
 
+
 def Compound_Interest_Calculator():
     month_number = 0
     interest_amount = type_fixer(input("How much money is having interest?: "))
@@ -56,6 +58,7 @@ def Compound_Interest_Calculator():
     while month_number < 10:
         interest_amount, month_number = interest_calc(interest_amount, interest, month_number)
     return
+
 
 def Budget_allocator():
     hundred_p = False
@@ -100,6 +103,7 @@ def Budget_allocator():
         print("You will be putting", type_fixer(list[2]), "in", type_fixer(list[0]))
     return
 
+
 def Sale_Price_Calculator():
     original_price = type_fixer(input("What is the original price for the item?: "))
     if original_price == False: 
@@ -112,7 +116,19 @@ def Sale_Price_Calculator():
     print("The price of the product is", final_price)
     return
 
+
 def Tip_calculator():
+    before_tip = type_fixer(input("What was the orginal price?: "))
+    if before_tip == False: 
+        return
+    tip = type_fixer(input("What is the precentage you want to tip?: "))
+    if tip == False: 
+        return               
+    tip = tip/100
+    after_tip = before_tip + (tip*before_tip)
+    print("The final price will be", after_tip)
+    return
+
 
 def main():
     while True:
@@ -121,7 +137,6 @@ def main():
         choice_input = int(input("What would you like to do?: "))
 
         #goal tester
-
         if choice_input == 1:
             goal_tester()
         
@@ -139,16 +154,7 @@ def main():
 
         #Tip Calculator
         elif choice_input == 5:
-            before_tip = type_fixer(input("What was the orginal price?: "))
-            if before_tip == False: 
-                continue
-            tip = type_fixer(input("What is the precentage you want to tip?: "))
-            if tip == False: 
-                continue                
-            tip = tip/100
-            after_tip = before_tip + (tip*before_tip)
-            print("The final price will be", after_tip)
-            continue
+            Tip_calculator()
 
         #break statement
         elif choice_input == 6:
@@ -159,8 +165,6 @@ def main():
         else:
             print("Invalid input.")
             continue
+
+
 main()
-        
-        
-        
-        
