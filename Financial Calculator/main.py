@@ -150,7 +150,7 @@ def main():
             print("Thanks for using my financial calculator, and have a good day!")
             break
 
-        #incase they don't enter 1-6
+        #in case they don't enter 1-6
         else:
             print("Invalid input.")
             continue
