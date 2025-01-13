@@ -58,7 +58,61 @@ def Compound_Interest_Calculator():
     return
 
 def Budget_allocator():
-    
+    hundred_p = False
+    allocations_list = []
+    precentage_total = 0
+    budget = type_fixer(input("How much money are you allocating?: "))
+    if budget == False: 
+        return
+    allocations = int(input("How many things are you allocating to?: "))        
+    if allocations == 1:
+        print("Just put that much money into it!")
+        return
+                
+    while allocations > 0 and hundred_p == False:
+        allocations -= 1
+        allocation_name = input("What is the name for this allocation?: ")
+        percentage = int(input("What percentage are you putting into this allocation?: "))
+        if percentage == 100:
+            print("Just put that much money into it!")
+            hundred_p = True
+            return
+        print()
+        percentage = percentage/100
+        allocation_list = [allocation_name, percentage]
+        allocations_list.append(allocation_list)
+    if hundred_p == True:
+        return
+    for list in allocations_list:
+        precentage_total += list[1]       
+    if precentage_total > 1:
+        print("You can't have over 100%!")
+        return
+    elif precentage_total < 1:
+        print("You can't have under 100%!")
+        return
+                
+    for list in allocations_list:
+        allocation_amount = list[1]*budget
+        list = list.append(allocation_amount)
+                
+    for list in allocations_list:
+        print("You will be putting", type_fixer(list[2]), "in", type_fixer(list[0]))
+    return
+
+def Sale_Price_Calculator():
+    original_price = type_fixer(input("What is the original price for the item?: "))
+    if original_price == False: 
+        return
+    discount = type_fixer(input("What is your total percentage off?: "))
+    if discount == False:
+        return                
+    discount = discount/100
+    final_price = original_price - (original_price*discount)
+    print("The price of the product is", final_price)
+    return
+
+def Tip_calculator():
 
 def main():
     while True:
@@ -77,65 +131,11 @@ def main():
 
         #Budget allocator
         elif choice_input == 3:
-            hundred_p = False
-            allocations_list = []
-            precentage_total = 0
-            budget = type_fixer(input("How much money are you allocating?: "))
-            if budget == False: 
-                continue
-            allocations = int(input("How many things are you allocating to?: "))
-            
-            if allocations == 1:
-                print("Just put that much money into it!")
-                continue
-                
-            while allocations > 0 and hundred_p == False:
-                allocations -= 1
-                allocation_name = input("What is the name for this allocation?: ")
-                percentage = int(input("What percentage are you putting into this allocation?: "))
-                if percentage == 100:
-                    print("Just put that much money into it!")
-                    hundred_p = True
-                    break
-                print()
-                percentage = percentage/100
-                allocation_list = [allocation_name, percentage]
-                allocations_list.append(allocation_list)
-
-            if hundred_p == True:
-                continue
-
-            for list in allocations_list:
-                precentage_total += list[1]
-                
-            if precentage_total > 1:
-                print("You can't have over 100%!")
-                continue
-
-            elif precentage_total < 1:
-                print("You can't have under 100%!")
-                continue
-                
-            for list in allocations_list:
-                allocation_amount = list[1]*budget
-                list = list.append(allocation_amount)
-                
-            for list in allocations_list:
-                print("You will be putting", type_fixer(list[2]), "in", type_fixer(list[0]))
-            continue
+            Budget_allocator()
 
         #Sale Price Calculator
         elif choice_input == 4:
-            original_price = type_fixer(input("What is the original price for the item?: "))
-            if original_price == False: 
-                continue
-            discount = type_fixer(input("What is your total percentage off?: "))
-            if discount == False:
-                continue                
-            discount = discount/100
-            final_price = original_price - (original_price*discount)
-            print("The price of the product is", final_price)
-            continue
+            Sale_Price_Calculator()
 
         #Tip Calculator
         elif choice_input == 5:
