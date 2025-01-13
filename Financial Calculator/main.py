@@ -22,6 +22,44 @@ def interest_calc(interest_amount, interest, month_number):
     print("After", month_number, "month(s) you will have:", interest_amount)
     return interest_amount, month_number
 
+def goal_tester():
+    week_month = int(input("Would you like to base it on weekly or monthly deposits?(type 1 for weekly and type 2 for monthly): "))        
+    if week_month == 1:
+        deposit = type_fixer((input("How much are you planning on depositing every week?: ")))
+        if deposit == False: 
+            return
+        goal = type_fixer((input("What is your goal?: ")))
+        if goal == False: 
+            return                  
+        Goal_Timeline = int(goal/deposit)
+        print("It will take you", Goal_Timeline, "week(s) to get to your goal.")
+        return
+    if week_month == 2:
+        deposit = type_fixer((input("How much are you planning on depositing every month?: ")))
+        if deposit == False: 
+            return
+        goal = type_fixer((input("What is your goal?: ")))
+        if goal == False: 
+            return         
+        goal_timeline = int(goal/deposit)
+        print("It will take you", goal_timeline, "month(s) to get to your goal.")
+
+def Compound_Interest_Calculator():
+    month_number = 0
+    interest_amount = type_fixer(input("How much money is having interest?: "))
+    if interest_amount == False: 
+        return
+    interest = type_fixer(input("What is the interest percentage?: "))
+    if interest == False: 
+        return                
+    interest = interest/100
+    while month_number < 10:
+        interest_amount, month_number = interest_calc(interest_amount, interest, month_number)
+    return
+
+def Budget_allocator():
+    
+
 def main():
     while True:
         #direction choice
@@ -29,46 +67,13 @@ def main():
         choice_input = int(input("What would you like to do?: "))
 
         #goal tester
-        if choice_input == 1:
-            week_month = int(input("Would you like to base it on weekly or monthly deposits?(type 1 for weekly and type 2 for monthly): "))
-        
-            if week_month == 1:
-                deposit = type_fixer((input("How much are you planning on depositing every week?: ")))
-                if deposit == False: 
-                    continue
-                goal = type_fixer((input("What is your goal?: ")))
-                if goal == False: 
-                    continue
-                    
-                Goal_Timeline = int(goal/deposit)
-                print("It will take you", Goal_Timeline, "week(s) to get to your goal.")
-                continue
 
-            if week_month == 2:
-                deposit = type_fixer((input("How much are you planning on depositing every month?: ")))
-                if deposit == False: 
-                    continue
-                goal = type_fixer((input("What is your goal?: ")))
-                if goal == False: 
-                    continue
-                    
-                goal_timeline = int(goal/deposit)
-                print("It will take you", goal_timeline, "month(s) to get to your goal.")
-                continue
+        if choice_input == 1:
+            goal_tester()
         
         #Compound Interest Calculator
         elif choice_input == 2:
-            month_number = 0
-            interest_amount = type_fixer(input("How much money is having interest?: "))
-            if interest_amount == False: 
-                continue
-            interest = type_fixer(input("What is the interest percentage?: "))
-            if interest == False: 
-                continue                
-            interest = interest/100
-            while month_number < 10:
-                interest_amount, month_number = interest_calc(interest_amount, interest, month_number)
-            continue
+            Compound_Interest_Calculator()
 
         #Budget allocator
         elif choice_input == 3:
