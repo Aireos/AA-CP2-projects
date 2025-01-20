@@ -48,13 +48,15 @@ def finding(song,song_list):
 def display(song_list):
     print("here is a list of all the songs in your playlist:")
     for item in song_list:
+        print()
         print(item[0], "by", item[1], "made in", item[2])
 
 
 #the main function that has the most user inputs and has the input to find what they want to do.
 def main():
+    song_list = set()
     while True:
-        song_list = set()
+        print()
         to_do = input("would you like to add, remove, find, display or leave?: ")
 
         if to_do == "add":
@@ -80,6 +82,7 @@ def main():
 
 #runs the main function
 main()
+print("Bye!")
     
     
         
