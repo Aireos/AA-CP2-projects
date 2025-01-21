@@ -73,7 +73,7 @@ add the input to position 4 in attende_names
 for number in range(attende_list[position 1][position 1][position 2]):
 input asking what is the name of a man in the grass:
 add the input to position 5 in attende_names
-Return attende_list, total_tickets, and attende_names and go to artist management and then go to find artist
+Return attende_list, total_tickets, and attende_names and go to artist management and then go to find artist function
 
 
 find_function
@@ -105,3 +105,4 @@ print artist information
 
 input asking if they want to find something else (yes or no)
 if yes, continue
+else, go to the main functionS
