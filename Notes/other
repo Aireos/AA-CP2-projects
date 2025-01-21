@@ -5,3 +5,13 @@
 #          1    2
 
 # 1 is position of list in list, 2 is position of thing inside that list
+
+
+
+#number_amount = 5
+#for number in range(number_amount):
+#   print("ha")
+
+#prints ha ha ha ha ha
+
+#allows you to run somthing a number of times based on the size of the number
