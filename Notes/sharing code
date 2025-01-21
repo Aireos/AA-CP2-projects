@@ -1,21 +1,21 @@
 How do you create a new Git Repository? 
 
-click the button that says new on top left in green.
+click the button that says new on the top left in green.
 
 
 What are branches used for in a Git Repository?
 
-Branches are used so that multiple peaple can work on a project and have all their work combined afterwards.
+Branches are used so that multiple people can work on a project and combine all their work afterward.
 
 
 How do you create a branch in a Git Repository?
 
-By clicking issues tab and then click the create a branch button in the development box.
+Click the issues tab and then create a branch button in the development box.
 
 
 Who should review changes on Github before merging the content to the main branch?
 
-The group leader should review it.
+The group leader should be the one to review it.
 
 
 How do you change what branch you are on in VS Code? 
