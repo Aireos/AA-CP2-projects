@@ -1,8 +1,8 @@
-
+#Alex Anderson, Music Festival Pseudocode
 
 store tickets function
 have ticket types be equal to Seated, Vip, Grass
-have a while true loop
+have a while true loop, a placement for continues to go back to
 ticket_type equals an input asking what they want to store, out of the ticket types, Tickets.
 have an input asking what is the amount of 1-day tickets of this type that were bought.  
 have one-day tickets be equal to that input
@@ -17,7 +17,7 @@ Return ticket_list and go to the edit tickets function next
 
 
 edit tickets function
-have a while true loop
+have a while true loop, a placement for continues to go back to
 have ticket_type be equal to an input asking what they want to store out of Seated, Vip, or Grass Tickets.
 have an input asking what amount of one-day tickets of this type were removed/added? 
 If ticket_type is equal to Seated, have input be added to position 1 in position 0 of the ticket list
@@ -38,7 +38,7 @@ have total_VIP_tickets equal to ticket_list(position 1 in position 1)+ ticket_li
 have total_grass_tickets equal to ticket_list(position 1 in position 2)+ ticket_list(position 2 in position 2) 
 have total_tickets equal to total_grass_tickets + total_VIP_tickets + total_seated_tickets 
 have attende_types equal to female, male
-have a while true loop
+have a while true loop, a placement for continues to go back to
 have gender_type be equal to an input asking if they want to store, out of the attende_types, attendees
 remove gender_type from attende_types
 have under_18 equal to an input asking what was the amount of (gender_type) ages 18 and under that went?
@@ -53,7 +53,7 @@ if gender_type equals female: have total_female equal to area_amount[position 0]
 if gender_type equals male: have total_male equal to area_amount[position 0] + area_amount[position 1] + area_amount[position 2]
 if gender_type equals female: have attende_list[position 0] equal to total_female, area_amounts, age_list
 if gender_type equals male: have attende_list[position 1] equal to total_male, area_amounts, age_list
-If attende_types is not empty, continue
+If attende_types is not empty, continue back to beginning of while true loop
 if total_female + total_male > total_tickets, print that they had too many people and continue
 for number in range(attende_list[position 0][position 1][position 0]):
 input asking what the name of a woman in seated:
@@ -77,13 +77,13 @@ Return attende_list, total_tickets, and attende_names and go to artist managemen
 
 
 find_function
-have a while True loop
+have a while True loop, a placement for continues to go back to
 have an input asking if they are trying to find an artist, schedules, or attendees.
 
 Attendees
-have a while true loop
+have a while true loop, a placement for continues to go back to
 have an input that asks what the name of the attendee is.
-If the input is not in attende_names, continue
+If the input is not in attende_names, continue back to beginning of while true loop
 If the name is in position 0 in attendee names: print that it is a seated female.
 If the name is in position 1 in attendee names: print that it is a VIP female.
 If the name is in position 2 in attendee names: print that it is a grass-located female.
@@ -92,17 +92,17 @@ If the name is in position 4 in attendee names: print that it is a VIP male.
 If the name is in position 5 in attendee names: print that it is a grass-located male.
 
 Schedules
-have a while true loop
+have a while true loop, a placement for continues to go back to
 have an input asking what the name is of the schedule.
-If the input is not in scedules, continue
+If the input is not in scedules, continue back to beginning
 print schedule information
 
 Artists
-have a while true loop
+have a while true loop, a placement for continues to go back to
 have an input asking what the name of the artist is.
-If the input is not in artists, continue
+If the input is not in artists, continue back to beginning of while true loop
 print artist information
 
 input asking if they want to find something else (yes or no)
-if yes, continue
-else, go to the main functionS
+if yes, continue back to beginning of while true loop
+else, go to the main function
