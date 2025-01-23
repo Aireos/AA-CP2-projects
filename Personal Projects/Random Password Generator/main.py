@@ -136,13 +136,17 @@ def main():
         special_three = special
 
         password = password_generator(uppercase, lowercase, number_amount, special, password)
+        print()
         print("Your first password is:", password)
+        print()
 
         password = password_generator(uppercase_one, lowercase_one, number_amount_one, special_one, password)
         print("Your second password is:", password)
+        print()
 
         password = password_generator(uppercase_two, lowercase_two, number_amount_two, special_two, password)
         print("Your third password is:", password)
+        print()
 
         password = password_generator(uppercase_three, lowercase_three, number_amount_three, special_three, password)
         print("Your fourth password is:", password)
