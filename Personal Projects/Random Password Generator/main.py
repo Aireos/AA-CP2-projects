@@ -4,11 +4,10 @@ import random
 special_charecters = ["@", "#", "$", "%", "&", "!"]
 uppercase_charecters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 lowercase_charecters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-numbers = ["1","2","3","4","5","6","8","9"]
-password = ""
+numbers = ["1","2","3","4","5","6","7","8","9"]
 
 
-def uppercase_finder_amount(type, password):
+def uppercase_finder_amount(type, password, uppercase):
     if type == 0:
         while True:
             try: 
@@ -24,7 +23,8 @@ def uppercase_finder_amount(type, password):
         password += uppercase_charecters[random.randint(0,25)]
         return password, uppercase
 
-def lowercase_finder_amount(type, password):
+
+def lowercase_finder_amount(type, password, lowercase):
     if type == 0:
         while True:
             try: 
@@ -40,7 +40,8 @@ def lowercase_finder_amount(type, password):
         password += lowercase_charecters[random.randint(0,25)]
         return password, lowercase
 
-def number_finder_amount(type, password):
+
+def number_finder_amount(type, password, number_amount):
     if type == 0:
         while True:
             try: 
@@ -56,11 +57,12 @@ def number_finder_amount(type, password):
         password += numbers[random.randint(0,8)]
         return password, number_amount
     
-def special_finder_amount(type, password):
+
+def special_finder_amount(type, password, special):
     if type == 0:
         while True:
             try: 
-                special = int(input("How many numbers do you want?: "))
+                special = int(input("How many special charecters do you want?: "))
                 break
             except: 
                 print("invalid input")
@@ -69,49 +71,89 @@ def special_finder_amount(type, password):
     
     elif type == 1:
         special -= 1
-        password += special_charecters[random.randint(0,8)]
+        password += special_charecters[random.randint(0,5)]
         return password, special
 
 
-while True:
+def password_generator(uppercase, lowercase, number_amount, special, password):
+    password = ""
+    while True:
+        next_charecter = random.randint(0,3)
+        if uppercase != 0 and next_charecter == 0:
+            password, uppercase = uppercase_finder_amount(1,password, uppercase)
+        elif lowercase != 0 and next_charecter == 1:
+            password, lowercase = lowercase_finder_amount(1,password, lowercase)
+        elif number_amount != 0 and next_charecter == 2:
+            password, number_amount = number_finder_amount(1,password, number_amount)
+        elif special != 0 and next_charecter == 3:
+            password, special = special_finder_amount(1,password, special)
+        if uppercase == 0 and lowercase == 0 and number_amount == 0 and special == 0:
+            return password
+        else:
+            continue
 
-    try: length = int(input("What is the total length of the password?: "))
-    except: 
-        print("invalid input")
-        continue
 
-    uppercase = uppercase_finder_amount(0,password)
-    lowercase = lowercase_finder_amount(0,password)
-    special = special_finder_amount(0,password)
-    number_amount = number_finder_amount(0, password)
+def main():
+    while True:
+        leave = input("Do you want to leave? (yes or no): ")
+        if leave == "yes":
+            break
+        password = ""
+        uppercase = 0
+        lowercase = 0
+        special = 0
+        number_amount = 0
 
-    if uppercase + lowercase + special + number_amount == length:
-        break
-    else:
-        print("You can't have more or less charecters than total length!")
-        continue
-uppercase_one = uppercase
-uppercase_two = uppercase
-lowercase_one = lowercase
-lowercase_two = lowercase
-number_amount_one = 
-number_amount_one = 
+        while True:
 
-while True:
-    next_charecter = random.randint(0,3)
-    if uppercase != 0 and next_charecter == 0:
-        password, uppercase = uppercase_finder_amount(1,password)
-    elif lowercase != 0 and next_charecter == 1:
-        password, lowercase = lowercase_finder_amount(1,password)
-    elif number_amount != 0 and next_charecter == 2:
-        password, number_amount = number_finder_amount(1,password)
-    elif special != 0 and next_charecter == 3:
-        password, special = special_finder_amount(1,password)
-    if uppercase and lowercase and number_amount and special == 0:
-        break
-    else:
-        continue
+            try: length = int(input("What is the total length of the password?: "))
+            except: 
+                print("invalid input")
+                continue
 
-print("Your first password is:", password)
+            uppercase = uppercase_finder_amount(0,password, uppercase)
+            lowercase = lowercase_finder_amount(0,password, lowercase)
+            special = special_finder_amount(0,password, special)
+            number_amount = number_finder_amount(0, password, number_amount)
 
-    
+            if uppercase + lowercase + special + number_amount == length:
+                break
+            else:
+                print("You can't have more or less charecters than total length!")
+                continue
+
+        uppercase_one = uppercase
+        uppercase_two = uppercase
+        uppercase_three = uppercase
+        lowercase_one = lowercase
+        lowercase_two = lowercase
+        lowercase_three = lowercase
+        number_amount_one = number_amount
+        number_amount_two = number_amount
+        number_amount_three = number_amount
+        special_one = special
+        special_two = special
+        special_three = special
+
+        password = password_generator(uppercase, lowercase, number_amount, special, password)
+        print("Your first password is:", password)
+
+        password = password_generator(uppercase_one, lowercase_one, number_amount_one, special_one, password)
+        print("Your second password is:", password)
+
+        password = password_generator(uppercase_two, lowercase_two, number_amount_two, special_two, password)
+        print("Your third password is:", password)
+
+        password = password_generator(uppercase_three, lowercase_three, number_amount_three, special_three, password)
+        print("Your fourth password is:", password)
+
+
+main()
+
+for number in range(30):
+    print()
+
+print("Have a good day!")
+
+for number in range(15):
+    print()
