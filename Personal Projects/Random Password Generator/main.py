@@ -88,11 +88,30 @@ while True:
     if uppercase + lowercase + special + number_amount == length:
         break
     else:
-        print("You can't have more charecters than total length!")
+        print("You can't have more or less charecters than total length!")
         continue
+uppercase_one = uppercase
+uppercase_two = uppercase
+lowercase_one = lowercase
+lowercase_two = lowercase
+number_amount_one = 
+number_amount_one = 
 
 while True:
     next_charecter = random.randint(0,3)
     if uppercase != 0 and next_charecter == 0:
         password, uppercase = uppercase_finder_amount(1,password)
+    elif lowercase != 0 and next_charecter == 1:
+        password, lowercase = lowercase_finder_amount(1,password)
+    elif number_amount != 0 and next_charecter == 2:
+        password, number_amount = number_finder_amount(1,password)
+    elif special != 0 and next_charecter == 3:
+        password, special = special_finder_amount(1,password)
+    if uppercase and lowercase and number_amount and special == 0:
+        break
+    else:
+        continue
+
+print("Your first password is:", password)
+
     
