@@ -43,6 +43,7 @@ def lowercase_finder_amount(type, password, lowercase):
         password += lowercase_charecters[random.randint(0,25)]
         return password, lowercase
 
+
 #used for finding the number of numbers and adding numbers to the password
 def number_finder_amount(type, password, number_amount):
     if type == 0:
@@ -59,7 +60,8 @@ def number_finder_amount(type, password, number_amount):
         number_amount -= 1
         password += numbers[random.randint(0,8)]
         return password, number_amount
-    
+
+
 #used for finding the number of special charecters and adding special charecters to the password
 def special_finder_amount(type, password, special):
     if type == 0:
@@ -94,6 +96,7 @@ def password_generator(uppercase, lowercase, number_amount, special, password):
             return password
         else:
             continue
+
 
 #has all the stuff that the user can see and what will be the end of the program when done
 def main():
@@ -154,8 +157,10 @@ def main():
         password = password_generator(uppercase_three, lowercase_three, number_amount_three, special_three, password)
         print("Your fourth password is:", password)
 
+
 #runs main
 main()
+
 
 #just some stuff to blank screen and say have a good day in center
 for number in range(30):
