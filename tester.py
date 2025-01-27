@@ -1,3 +1,5 @@
-list = [1,2,3]
-list.pop(list.index(1))
-print(list)
+while True:
+    ticket_type = "vip"
+    if ticket_type != "seated" and ticket_type != "vip" and ticket_type != "grass":
+        print("invalid input")
+        continue
