@@ -1,0 +1,82 @@
+-- Alexander Anderson Dictionaries Notes
+
+-- What is a dictionary?
+-- A list that contains a key and a value pair.
+
+-- example:
+--     car = {
+--         "make":"Ford",
+--         "model":"EscapeXLT",
+--         "year": 2008,
+--         "color": "Red",
+--     }
+
+--     print(car) would print {"make","Ford","model","EscapeXLT","year", 2008, "color", "Red"}
+
+
+
+-- What are keys?
+-- A group of names that have information/values inside them
+
+
+
+-- What are values?
+-- The values inside the keys that can be accesed via the keys
+
+
+
+-- How do you write a dictionary?
+-- name_of_dictionary = {
+--     "key": "Data"
+--     "key": "Data"
+--     "key": "Data"
+--     etc...
+-- }
+
+
+
+-- What data types can you have in a dictionary?
+-- any
+
+
+
+-- How do you print 1 item from a dictionary?
+-- print[item_placement[can go to item inside item with brackets]]
+
+
+
+-- Why would you use a dictionary in a program?
+-- avatar = {
+--     "earth":{
+--         "main_char":{
+--             "Toph": "Invented metal bending."
+--             }
+--         }
+--     "water":{
+--         "main_char":{
+--             "Katara": "Group mom."
+--             "Sokka": "Team leader."
+--             }
+--         }
+--     "fire":{
+--         "main_char":{
+--             "Zuko": "Exciled prince that masters fire."
+--             }
+--         }
+--     "air":{
+--         "main_char":{
+--             "Aang": "The avatar and main charecter."
+--             }
+--         }
+    
+-- }
+-- print(avatar:["earth"]["main_char"])
+
+
+
+-- What methods can be used with dictionaries?
+-- .value(), finds the values of items
+-- .pop(), removes item or key(removes all items inside the key)
+-- .clear(), removes all items
+-- .get(), prints the information inside a key
+-- .setdefault(), makes default for what happens if it isn't there
