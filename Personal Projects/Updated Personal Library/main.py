@@ -2,8 +2,17 @@
 
 #used before every other function to have the function know what the song is they are trying to add, remove, etc.
 def making():
-    song_name = input("what is the name of the song?: ")
-    song_auther = input("who wrote the song?: ")
+    song_name = input("What is the name of the song?: ")
+    song_composer = input("Who wrote the song?: ")
+    song_album = input("What album is the song in?: ")
+    
+    while True:
+        try:
+            song_age = int(input("when was the song made?: "))
+        except:
+            print("invalid input")
+            continue
+        break
 
     while True:
         try:
@@ -13,7 +22,7 @@ def making():
             continue
         break
 
-    song = (song_name,song_auther,song_age)
+    song = (song_name,song_composer,song_age)
     return song
 
 
