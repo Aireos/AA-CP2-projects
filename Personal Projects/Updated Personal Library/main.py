@@ -1,105 +1,146 @@
 #Alex Anderson Update Personal Library
 
-#used before every other function to have the function know what the song is they are trying to add, remove, etc.
+# Function to find song details and return song
 def making():
-    song_name = input("what is the name of the song?: ")
-    song_composer = input("who wrote the song?: ")
+    song_name = input("What is the name of the song?: ")
+    song_composer = input("Who wrote the song?: ")
     song_album = input("What is the album that the song is in?: ")
 
     while True:
         try:
             song_length = int(input("What is the length in seconds of the song?: "))
         except:
-            print("invalid input")
+            print("Invalid input")
             continue
         break
 
     while True:
         try:
-            song_age = int(input("when was the song made?: "))
+            song_age = int(input("When was the song made?: "))
         except:
-            print("invalid input")
+            print("Invalid input")
             continue
         break
 
-    song = song_name[song_composer, song_length, song_album, song_age]
-    return song
+    # Creating a dictionary for the song
+    song = {
+        "composer": song_composer,
+        "length": song_length,
+        "album": song_album,
+        "year": song_age
+    }
 
-#pretty straight forward, just adds the song to the list of all of their songs.
-def adding(song,song_dictionary):
-    song_dictionary.add(song)
+    return song_name, song
+
+
+# Adds the song to the song dictionary
+def adding(song_name, song, song_dictionary):
+    song_dictionary[song_name] = song  # Add the song to the dictionary
     return song_dictionary
 
 
-#makes sure the song is in the song_dictionary and then removes it if it is.
-def removing(song,song_dictionary):
-    if song in song_dictionary:
-        song_dictionary.remove(song)
-        return song_dictionary
-    
+# Removes a song from the song dictionary
+def removing(song_name, song_dictionary):
+    if song_name in song_dictionary:
+        song_dictionary.pop(song_name)
+        print(f"'{song_name}' has been removed.")
     else:
-        print("invalid song")
-        return song_dictionary
+        print("Song not found.")
+    return song_dictionary
 
 
-#also straight forward, just checks if the song is in the song_dictionary and returns false if it is not and returns true if it is.
-def finding(song,song_dictionary):
-    if song in song_dictionary:
+# Finds if the song exists in the dictionary
+def finding(song_name, song_dictionary):
+    if song_name in song_dictionary:
         return True
-    
     else:
-        print("that song is not in your playlist")
+        print("That song is not in your playlist.")
         return False
 
 
-#just prints the facts for every song in their playlist
+# Displays all songs in the playlist
 def display(song_dictionary):
-    print("here is a list of all the songs in your playlist:")
-    for item in song_dictionary:
+    print("Here is a list of all the songs and details in your playlist:")
+    for song_name, details in song_dictionary.items():
+        print(f"Song: {song_name}")
+        print(f"Composer: {details['composer']}")
+        print(f"Album: {details['album']}")
+        print(f"Length in seconds: {details['length']}")
+        print(f"Year made: {details['year']}")
         print()
-        print(item[0], "by", item[1], "made in", item[2])
 
-#Code to update information for each song
+
+# Code to update information for a song
 def update(song_dictionary):
-    print("songs:")
-    for item in song_dictionary:
-      print(item[0])
-    song_to_update = input("What song do you want to update?: ")
+    print("Songs:")
+    for key in song_dictionary:
+        print(key)
+    song_name = input("What song do you want to update?: ")
+
+    if song_name in song_dictionary:
+        print(f"Updating details for: {song_name}")
+        song = song_dictionary[song_name]
+        
+        #Updates song details
+        song['composer'] = input(f"Update composer (current: {song['composer']}): ") or song['composer']
+        song['album'] = input(f"Update album (current: {song['album']}): ") or song['album']
+        while True:
+            try:
+                song['length'] = int(input(f"Update length in seconds (current: {song['length']}): ") or song['length'])
+                break
+            except:
+                print("Invalid input, please enter a valid number.")
+        while True:
+            try:
+                song['year'] = int(input(f"Update year (current: {song['year']}): ") or song['year'])
+                break
+            except:
+                print("Invalid input, please enter a valid year.")
+        
+        print(f"Details for '{song_name}' have been updated.")
+    else:
+        print("Song not found.")
 
 
-#the main function that has the most user inputs and has the input to find what they want to do.
+# Main function
 def main():
-    song_dictionary = {
+    song_dictionary = {}
 
-    }
     while True:
         print()
-        to_do = input("would you like to add, remove, find, display, update, or leave?: ")
+        to_do = input("Would you like to add, remove, find, display all, update, or leave?: ")
 
         if to_do == "add":
-            song = making()
-            song_dictionary = adding(song,song_dictionary)
+            song_name, song = making()
+            song_dictionary = adding(song_name, song, song_dictionary)
 
         elif to_do == "remove":
-            song = making()
-            song_dictionary = removing(song,song_dictionary)
+            song_name = input("What is the name of the song you want to remove?: ")
+            song_dictionary = removing(song_name, song_dictionary)
         
         elif to_do == "find":
-            song = making()
-            found = finding(song,song_dictionary)
-            if found == True:
-                print(song[0], "by", song[1], "made in", song[2], "is in your playlist.")
-        
-        elif to_do == "display":
+            song_name = input("What is the name of the song you want to find?: ")
+            found = finding(song_name, song_dictionary)
+            if found:
+                song = song_dictionary.get(song_name)
+                print(f"Composer: {song['composer']}")
+                print(f"Album: {song['album']}")
+                print(f"Length in seconds: {song['length']}")
+                print(f"Year the song was made: {song['year']}")
+
+        elif to_do == "display all":
             display(song_dictionary)
 
         elif to_do == "update":
             update(song_dictionary)
         
         elif to_do == "leave":
+            print("Have a good day!")
             break
 
+        else:
+            print("Invalid input, please try again.")
 
-#runs the main function
+
+# Runs the main function
 main()
-print("Bye!")
