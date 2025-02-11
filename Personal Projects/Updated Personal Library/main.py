@@ -60,14 +60,35 @@ def finding(song_name, song_dictionary):
 
 # Displays all songs in the playlist
 def display(song_dictionary):
-    print("Here is a list of all the songs and details in your playlist:")
-    for song_name, details in song_dictionary.items():
-        print(f"Song: {song_name}")
-        print(f"Composer: {details['composer']}")
-        print(f"Album: {details['album']}")
-        print(f"Length in seconds: {details['length']}")
-        print(f"Year made: {details['year']}")
-        print()
+    while True:
+        try:
+            display_input = int(input("Would you like to display all details(1) or just the name and composer(2)?: "))
+        except:
+            print("invalid input")
+            continue
+
+        if display_input == 1:
+            print("Here is a list of all the songs and details in your playlist:")
+            for song_name, details in song_dictionary.items():
+                print(f"Song: {song_name}")
+                print(f"Composer: {details['composer']}")
+                print(f"Album: {details['album']}")
+                print(f"Length in seconds: {details['length']}")
+                print(f"Year made: {details['year']}")
+                print()
+        
+        elif display_input == 2:
+            print("Here is a list of all the songs and their composers in your playlist:")
+            for song_name, details in song_dictionary.items():
+                print(f"Song: {song_name}")
+                print(f"Composer: {details['composer']}")
+                print()
+        
+        elif display_input != 1 and display_input != 2:
+            print("invalid input")
+            continue
+
+        break
 
 
 # Code to update information for a song
@@ -108,7 +129,7 @@ def main():
 
     while True:
         print()
-        to_do = input("Would you like to add, remove, find, display all, update, or leave?: ")
+        to_do = input("Would you like to add, remove, find, display, update, or leave?: ")
 
         if to_do == "add":
             song_name, song = making()
@@ -128,7 +149,7 @@ def main():
                 print(f"Length in seconds: {song['length']}")
                 print(f"Year the song was made: {song['year']}")
 
-        elif to_do == "display all":
+        elif to_do == "display":
             display(song_dictionary)
 
         elif to_do == "update":
