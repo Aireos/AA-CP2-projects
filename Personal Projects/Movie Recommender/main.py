@@ -74,12 +74,11 @@ def filter_two(filtered_movies, movie_dictionary):
 
 def filter_three(filtered_movies, movie_dictionary):
     filter_three_movies = []
+    director_list = []
     filter_input_three = input("What is the name of the director you want to find?: ")
     for movie_name, details in movie_dictionary.items():
-        try:
-            director_three = details["director"][3]
-        except:
-            print()
+        directors = [details["director"]]
+        print(directors)
     return filtered_movies
 
 
