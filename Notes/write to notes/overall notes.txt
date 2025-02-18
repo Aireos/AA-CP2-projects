@@ -1,0 +1,11 @@
+You can find a file in a folder by using the copy relitive path button when you highlight a file
+
+
+You open a file by using (open(relitive path) = file:)
+
+
+writing is completly erasing all the current stuff in the file and writing what will be in it
+
+appending is adding more text to a file without erasing the content
+
+creation is making new files
