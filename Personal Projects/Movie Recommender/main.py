@@ -181,9 +181,18 @@ def filter_choice(filtered_movies, movie_dictionary):
         
 # Main function to tie everything together
 def main():
+    while True:
         movie_dictionary = movies_maker()
         filtered_movies = filtered_movies_maker(movie_dictionary)
         filter_choice(filtered_movies, movie_dictionary)
+
+        #makes a chance to do somthing else if they want to
+        go_again = input("Do you want to do somthing else?(y or n): ")
+        if go_again == "y":
+            continue
+        break
+
+
 
 # Run the program
 main()
