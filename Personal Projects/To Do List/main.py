@@ -21,9 +21,34 @@ def adder():
             break
 
     with open('Personal Projects/To Do List/tasks.txt', 'a', newline='') as file:
-        writer = csv.writer(file)
-        next(writer)
-        writer.writerow([task_name, "no"])
+        csv_writer = csv.writer(file)
+        csv_writer.writerow([task_name, "no"])
+
+def remover():
+    while True:
+        task_name = input("What is the name of the task you wish to remove? (type 'leave' if you want to leave): ")
         
+        if task_name.lower() == "leave":
+            break
+
+        with open('Personal Projects/To Do List/tasks.txt', 'r', newline='') as file:
+            csv_reader = csv.reader(file)
+            next(csv_reader)
+            tasks = list(csv_reader)
+        
+        updated_tasks = [task for task in tasks if task and task[0] != task_name]
+
+        if len(updated_tasks) == len(tasks):
+            print("Task not found. Try again.")
+            continue
+
+        else:
+            print("Task Found and Removed!")
+
+        with open('Personal Projects/To Do List/tasks.txt', 'a', newline='') as file:
+            csv_writer = csv.writer(file)
+            csv_writer.writerows(updated_tasks)
+        break
 
 adder()
+remover()
