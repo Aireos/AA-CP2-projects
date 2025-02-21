@@ -16,6 +16,7 @@ def adder():
 
             tasks = list(csv_reader)
 
+    #Makes tasks if it does not excist 
     except FileNotFoundError:
         tasks = []
     
@@ -59,17 +60,17 @@ def remover():
                 next(csv_reader)
 
             except StopIteration:
-                print("No tasks to remove.")
+                print("No tasks to remove. Please add a task.")
                 return
             
             tasks = list(csv_reader)
 
     except FileNotFoundError:
-        print("No tasks file found.")
+        print("No file found, please add a task.")
         return
     
     if not tasks:
-        print("No tasks available to mark as done.")
+        print("No tasks available to mark as done. Please add a task.")
         return
     
     while True:
@@ -89,12 +90,9 @@ def remover():
         with open('Personal Projects/To Do List/tasks.txt', 'w', newline='') as file:
             csv_writer = csv.writer(file)
 
-            if updated_tasks:
-                csv_writer.writerow(["Task", "Completed"])
-                csv_writer.writerows(updated_tasks)
+            csv_writer.writerow(["Task", "Completed"])
+            csv_writer.writerows(updated_tasks)
 
-            else:
-                file.truncate()
         break
 
 
@@ -108,13 +106,13 @@ def mark_as_done():
                 next(csv_reader)
 
             except StopIteration:
-                print("No tasks to mark as done.")
+                print("No tasks to mark as done. Please add a task.")
                 return
             
             tasks = list(csv_reader)
 
     except FileNotFoundError:
-        print("No tasks file found.")
+        print("No file found. Please add a task.")
         return
     
     if not tasks:
@@ -202,5 +200,5 @@ def main():
         else:
             print("Invalid choice, please try again.")
 
-
+#Runs the main function
 main()
