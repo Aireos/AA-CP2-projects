@@ -1,0 +1,14 @@
+How do you make multiple files in python?
+by making the names and making two files
+
+How do you get a function from another file?
+by using (from (name of file) import (function name))
+
+How do you get variables from another file?
+You cannot, but if they are part of a function you can return the varaibles info
+
+How do you have a function with multiple returns?
+return variable, variable2 in function and while using it you would have it look like this:  variable, variable_two = function_name()
+
+Why would you use multiple pages for a python project? 
+for storing information for later and for having main.py just having the main user interface and therfore be cleaner and so it is easyer to read.
