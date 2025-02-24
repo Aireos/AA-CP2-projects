@@ -32,14 +32,14 @@ def adder():
             continue
 
         for row in tasks:
-            if row and row[0] == task_name:
-                print("You can not have two identical tasks!")
+              print("You can not have two identical tasks!")
                 identical_found = True
                 break
 
         if identical_found:
             continue
-        break
+        break    if row and row[0] == task_name:
+          
 
     with open('Personal Projects/To Do List/tasks.txt', 'a', newline='') as file:
         csv_writer = csv.writer(file)
