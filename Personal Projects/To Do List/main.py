@@ -50,7 +50,7 @@ def adder():
             csv_writer.writerow(["Task", "Completed"])
 
         csv_writer.writerow([task_name, "no"])
-
+    
 
 #Function to remove a task
 def remover():
