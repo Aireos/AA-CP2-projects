@@ -5,7 +5,7 @@ import time_handler
 
 def main():
     # Ask user for the filename
-    file_name = "Personal Projects/Word Counter/" + input("Enter the file name (with extension, example: document.txt): ").strip()
+    file_name = input("Enter the file name (with relative path, example: Personal Projects/Word Counter/text.txt): ").strip()
 
     # Reads the file content  
     content = file_handler.read_file(file_name)
