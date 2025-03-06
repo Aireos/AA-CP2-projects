@@ -1,0 +1,2 @@
+def equip_items(user_key, users):
+    print(f"You have a {users[user_key]["equipment"]["head"]} on your head, {users[user_key]["equipment"]["body"]} on your body, {users[user_key]["equipment"]["legs"]} on your legs, and {users[user_key]["equipment"]["feet"]} on your feet.")
