@@ -2,22 +2,39 @@
 
 import csv
 
-# Function to load user profiles from CSV
+# Function to load user profiles
 def load_user_profiles():
     users = {}
     try:
-        with open("users.csv", "r", newline="") as file:
+        with open("Personal Projects/Battle Simulator/charecters.csv", "r", newline="") as file:
             csv_reader = csv.reader(file)
             for row in csv_reader:
                 try:
                     if row:
                         username, password = row[0], row[1]
-                        leaderboards = row[2:] if row[2:] else ["", "", ""]
+                        items = row[2].split() if row[2] else []
+                        health = int(row[3]) if row[3].isdigit() else 100
+                        strength = int(row[4]) if row[4].isdigit() else 10
+                        defense = int(row[5]) if row[5].isdigit() else 10
+                        speed = int(row[6]) if row[6].isdigit() else 10
+                        user_class = row[7] if len(row) > 7 else "Warrior"
+                        abilities = row[8].split(';') if len(row) > 8 else ["Power Strike"]
+                        equipment = {
+                            "head": row[9] if len(row) > 9 else "None",
+                            "body": row[10] if len(row) > 10 else "None",
+                            "legs": row[11] if len(row) > 11 else "None",
+                            "feet": row[12] if len(row) > 12 else "None"
+                        }
                         users[username] = {
                             "password": password,
-                            "items": leaderboards[0].split() if leaderboards[0] else [],
-                            "leaderboard_two": leaderboards[1].split() if leaderboards[1] else [],
-                            "leaderboard_three": leaderboards[2].split() if leaderboards[2] else []
+                            "items": items,
+                            "health": health,
+                            "strength": strength,
+                            "defense": defense,
+                            "speed": speed,
+                            "class": user_class,
+                            "abilities": abilities,
+                            "equipment": equipment
                         }
                 except:
                     continue
@@ -25,29 +42,27 @@ def load_user_profiles():
         pass
     return users
 
-# Function to turn user leaderboard into a list
-def leaderboard_fixer(users):
-    try:
-        for username, data in users.items():
-            data["leaderboard_one"] = " ".join(data["leaderboard_one"]) if data["leaderboard_one"] else ""
-            data["leaderboard_two"] = " ".join(data["leaderboard_two"]) if data["leaderboard_two"] else ""
-            data["leaderboard_three"] = " ".join(data["leaderboard_three"]) if data["leaderboard_three"] else ""
-    except:
-        pass
-
-# Function to save user profiles to CSV
+# Function to save user profiles
 def save_user_profiles(users):
     try:
-        with open("users.csv", "w", newline="") as file:
+        with open("Personal Projects/Battle Simulator/charecters.csv", "w", newline="") as file:
             csv_writer = csv.writer(file)
             for username, data in users.items():
                 try:
                     csv_writer.writerow([
                         username,
                         data["password"],
-                        data["leaderboard_one"],
-                        data["leaderboard_two"],
-                        data["leaderboard_three"]
+                        " ".join(data["items"]),
+                        data["health"],
+                        data["strength"],
+                        data["defense"],
+                        data["speed"],
+                        data["class"],
+                        ";".join(data["abilities"]),
+                        data["equipment"]["head"],
+                        data["equipment"]["body"],
+                        data["equipment"]["legs"],
+                        data["equipment"]["feet"]
                     ])
                 except:
                     continue
@@ -59,25 +74,22 @@ def access_account(users):
     while True:
         try:
             username = input("What is your username?(Type leave to make a new account): ").strip()
-            if username == "SillyBilly":
-                print('Error: SillyBilly too powerful')
-                continue
             
             if username.lower() == "leave":
                 return False
 
             if username not in users:
-                print("That username does not exist.")
+                print("That username does not exist")
                 continue
 
             password = input("Enter your password: ").strip()
             if password == users[username]["password"]:
-                print("Login successful!")
+                print("Login successful")
                 return username
             else:
-                print("Incorrect password. Try again.")
+                print("Incorrect password")
         except:
-            print("An error occurred. Please try again.")
+            print("An error occurred, please try again")
 
 # Function to create a new account
 def new_account(users):
@@ -85,31 +97,51 @@ def new_account(users):
         try:
             username = input("Enter your desired username: ").strip()
             if username in users:
-                print("That username is already taken. Try again.")
+                print("That username is already taken")
                 continue
 
             password = input("Enter your password: ").strip()
+            
+            while True:
+                user_class = input("Choose a class (Warrior, Mage, Rogue, Berserker): ").strip().capitalize()
+                if user_class in ["Warrior", "Mage", "Rogue", "Berserker"]:
+                    break
+                else:
+                    print("Invalid class, please choose from Warrior, Mage, Rogue, or Berserker")
+            
+            # Apply class-based stat modifications and abilities
+            class_stats = {
+                "Warrior": {"health": 120, "strength": 15, "defense": 15, "speed": 8, "abilities": ["Power Strike", "Shield Block"]},
+                "Mage": {"health": 80, "strength": 20, "defense": 5, "speed": 12, "abilities": ["Fireball", "Magic Shield"]},
+                "Rogue": {"health": 90, "strength": 12, "defense": 10, "speed": 18, "abilities": ["Backstab", "Shadow Step"]},
+                "Berserker": {"health": 110, "strength": 18, "defense": 8, "speed": 10, "abilities": ["Rage", "Berserk Smash"]}
+            }
+
             users[username] = {
                 "password": password,
-                "leaderboard_one": "",
-                "leaderboard_two": "",
-                "leaderboard_three": ""
+                "items": [],
+                "health": class_stats[user_class]["health"],
+                "strength": class_stats[user_class]["strength"],
+                "defense": class_stats[user_class]["defense"],
+                "speed": class_stats[user_class]["speed"],
+                "class": user_class,
+                "abilities": class_stats[user_class]["abilities"],
+                "equipment": {"head": "None", "body": "None", "legs": "None", "feet": "None"}
             }
             print("Account created successfully!")
             return username
         except:
-            print("An error occurred. Please try again.")
+            print("An error occurred, please try again")
 
-# Main function to handle user login or account creation
+# Main function to handle user login or making a new acount
 def user_login():
     while True:
         try:
             users = load_user_profiles()
-            leaderboard_fixer(users)
-            print("\033cWelcome to Game Central!")
+            print("Welcome to the Battle Simulator!")
 
             while True:
-                choice = input("Do you want to make a new account (1), access an account (2), or exit program (3)?: ").strip()
+                choice = input("Do you want to make a new account (1), access an account (2)?: ").strip()
                 if choice == "1":
                     user_key = new_account(users)
                     break
@@ -118,16 +150,15 @@ def user_login():
                     if user_key is False:
                         user_key = new_account(users)
                     break
-                elif choice == "3":
-                    print("Thank you for using our program!")
-                    return None
                 else:
-                    print("Invalid choice. Please enter 1, 2 or 3.")
+                    print("Invalid choice, please enter 1 or 2")
                     continue
             
             save_user_profiles(users)
-            print(f"Welcome, {user_key}!")
+            print(f"Welcome {user_key}")
             return user_key
         except:
-            print("An error occurred during login.")
+            print("An error occurred during login")
             continue
+
+user_key = user_login()
