@@ -10,7 +10,7 @@ def load_user_profiles():
                 try:
                     if row:
                         username, password = row[0], row[1]
-                        items = row[2].split() if row[2] else []
+                        items = row[2].split(';') if row[2] else []
                         health = int(row[3]) if row[3].isdigit() else 100
                         strength = int(row[4]) if row[4].isdigit() else 10
                         defense = int(row[5]) if row[5].isdigit() else 10
@@ -50,7 +50,7 @@ def save_user_profiles(users):
                     csv_writer.writerow([
                         username,
                         data["password"],
-                        " ".join(data["items"]),
+                        ";".join(data["items"]),
                         data["health"],
                         data["strength"],
                         data["defense"],
