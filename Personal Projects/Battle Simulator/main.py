@@ -156,9 +156,12 @@ def user_login():
             
             save_user_profiles(users)
             print(f"Welcome {user_key}")
-            return user_key
+            return user_key, users
         except:
             print("An error occurred during login")
             continue
 
-user_key = user_login()
+def equip_items(user_key, users):
+    print()
+    
+user_key, users = user_login()
