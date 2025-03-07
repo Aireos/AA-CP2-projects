@@ -71,7 +71,7 @@ def save_user_profiles(users):
 def access_account(users):
     while True:
         try:
-            username = input("What is your username?(Type leave to make a new account): ").strip()
+            username = input("What is your username?(Type leave to make a new account): ").strip().capitalize()
             
             if username.lower() == "leave":
                 return False
@@ -93,7 +93,7 @@ def access_account(users):
 def new_account(users):
     while True:
         try:
-            username = input("Enter your desired username: ").strip()
+            username = input("Enter your desired username: ").strip().capitalize()
             if username in users:
                 print("That username is already taken")
                 continue
