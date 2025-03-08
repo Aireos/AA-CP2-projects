@@ -1,2 +1,0 @@
-def show_stats(user_key, users):
-    print(f"You have {users[user_key]["health"]} health, {users[user_key]["strength"]} strength, {users[user_key]["defense"]} defense, and {users[user_key]["speed"]} speed.")
