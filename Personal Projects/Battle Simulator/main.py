@@ -192,6 +192,4 @@ def main():
             print("Invalid input, please try again.")
 
 
-# Running the main function
-if __name__ == "__main__":
-    main()
+main()
