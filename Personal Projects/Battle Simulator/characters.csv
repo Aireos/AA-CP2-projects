@@ -1,1 +1,5 @@
 name,class,level,experience,health,strength,defense,speed,inventory,armor,status_effects
+Aireos,Mage,1,0,80,10,8,12,{'Health Potion': 1},"{'helmet': None, 'chestplate': None, 'pants': None, 'shoes': None}",[]
+Gamer,Warrior,1,0,120,20,15,10,{'Health Potion': 1},"{'helmet': None, 'chestplate': None, 'pants': None, 'shoes': None}",[]
+ready player one,Rogue,1,0,90,15,10,18,{'Health Potion': 1},"{'helmet': None, 'chestplate': None, 'pants': None, 'shoes': None}",[]
+turtle,Mage,1,0,80,10,8,12,{'Health Potion': 1},"{'helmet': None, 'chestplate': None, 'pants': None, 'shoes': None}",[]

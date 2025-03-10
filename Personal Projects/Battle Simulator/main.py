@@ -35,7 +35,7 @@ def create_character(name, character_class):
 
 
 # Function to save characters to a CSV file
-def save_characters(characters, filename="characters.csv"):
+def save_characters(characters, filename="Personal Projects/Battle Simulator/characters.csv"):
     with open(filename, "w", newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["name", "class", "level", "experience", "health", "strength", "defense", "speed", "inventory", "armor", "status_effects"])
@@ -56,7 +56,7 @@ def save_characters(characters, filename="characters.csv"):
 
 
 # Function to load characters from a CSV file
-def load_characters(filename="characters.csv"):
+def load_characters(filename="Personal Projects/Battle Simulator/characters.csv"):
     characters = []
     try:
         with open(filename, "r") as file:
