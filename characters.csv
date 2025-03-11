@@ -1,0 +1,5 @@
+name,class,level,experience,health,strength,defense,speed,inventory,armor,status_effects
+Aireos,Mage,1,0,80,10,8,12,"{""Health Potion"": 3}","{""helmet"": null, ""chestplate"": null, ""pants"": null, ""shoes"": null}",[]
+Mara,Rogue,1,0,90,15,10,18,"{""Health Potion"": 3}","{""helmet"": null, ""chestplate"": null, ""pants"": null, ""shoes"": null}",[]
+Madi,Warrior,1,0,120,20,15,10,"{""Health Potion"": 3}","{""helmet"": null, ""chestplate"": null, ""pants"": null, ""shoes"": null}",[]
+Parralax_Night,Mage,1,0,80,10,8,12,"{""Health Potion"": 3}","{""helmet"": null, ""chestplate"": null, ""pants"": null, ""shoes"": null}",[]
