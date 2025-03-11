@@ -94,6 +94,7 @@ def display_characters(characters):
     if not characters:
         print("No characters found!")
         return
+    
     for char in characters:
         print(f"Name: {char['name']}, Class: {char['class']}, Health: {char['health']}, Strength: {char['strength']}, Defense: {char['defense']}, Speed: {char['speed']}")
 
@@ -112,6 +113,7 @@ def battle(team_one, team_two):
         if all(character["health"] <= 0 for character in team_one):
             print("Team 2 wins!")
             return
+        
         if all(character["health"] <= 0 for character in team_two):
             print("Team 1 wins!")
             return
@@ -125,6 +127,7 @@ def battle(team_one, team_two):
                 print(f"{character['name']} is stunned and skips their turn!")
                 character["status_effects"].remove("stunned")
                 continue
+
             if "burned" in character["status_effects"]:
                 burn_damage = 5
                 character["health"] -= burn_damage
@@ -150,6 +153,7 @@ def battle(team_one, team_two):
                     print(f"{character['name']} attacks {target['name']} for {damage} damage!")
                     if target["health"] <= 0:
                         print(f"{target['name']} has been defeated!")
+
                 else:
                     print("No enemies left to attack!")
 
@@ -158,12 +162,14 @@ def battle(team_one, team_two):
                     character["health"] += 20
                     character["inventory"]["Health Potion"] -= 1
                     print(f"{character['name']} uses a Health Potion and heals for 20 HP!")
+
                 else:
                     print(f"{character['name']} has no Health Potions left!")
 
             elif action == "special ability":
                 if character["special_used"]:
                     print(f"{character['name']} has already used their special ability this battle!")
+
                 else:
                     character["special_used"] = True  # Mark special ability as used
                     target_team = team_two if character in team_one else team_one
@@ -172,25 +178,30 @@ def battle(team_one, team_two):
                         print("Choose an enemy to use your special ability on:")
                         for i, enemy in enumerate(alive_enemies):
                             print(f"{i + 1}. {enemy['name']} (Health: {enemy['health']})")
+
                         enemy_choice = int(input("Enter the number of the enemy you want to target: ")) - 1
                         target = alive_enemies[enemy_choice]
 
                         if character["special_ability"] == "Berserk":
                             character["strength"] += 5
                             print(f"{character['name']} uses Berserk! Strength increased!")
+
                         elif character["special_ability"] == "Fireball":
                             damage = random.randint(15, 25)
                             target["health"] -= damage
                             target["status_effects"].append("burned")
                             print(f"{character['name']} uses Fireball on {target['name']}! {damage} damage dealt! {target['name']} is burned!")
+
                         elif character["special_ability"] == "Shadow Strike":
                             damage = random.randint(10, 20)
                             target["health"] -= damage
                             if random.random() < 0.5:  # 50% chance to stun
                                 target["status_effects"].append("stunned")
                                 print(f"{character['name']} uses Shadow Strike on {target['name']}! {damage} damage dealt! {target['name']} is stunned!")
+
                             else:
                                 print(f"{character['name']} uses Shadow Strike on {target['name']}! {damage} damage dealt!")
+
                     else:
                         print("No enemies left to target!")
 
@@ -215,6 +226,7 @@ def main():
             if character:
                 characters.append(character)
                 print(f"{name} created successfully!")
+                
             else:
                 print("Invalid class. Please try again.")
 
@@ -224,6 +236,7 @@ def main():
         elif action == "battle":
             if len(characters) < 4:
                 print("Not enough characters for a 2v2 battle. Please create more characters.")
+
             else:
                 battle(characters[:2], characters[2:4])
 
@@ -237,5 +250,6 @@ def main():
 
         else:
             print("Invalid input. Please try again.")
+
 
 main()
