@@ -39,9 +39,9 @@ def create_character(name, character_class):
 # Function to determine the character's special ability
 def determine_special_ability(character_class):
     abilities = {
-        "Warrior": "Berserk: Increases strength temporarily.",
-        "Mage": "Fireball: Deals massive damage with a chance to burn.",
-        "Rogue": "Shadow Strike: Deals extra damage and has a chance to stun."
+        "Warrior": "Berserk", #Increases strength temporarily.
+        "Mage": "Fireball", #Deals massive damage with a chance to burn.
+        "Rogue": "Shadow Strike" #Deals extra damage and has a chance to stun.
     }
     return abilities.get(character_class, "None")
 
@@ -97,14 +97,16 @@ def display_characters(characters):
     for char in characters:
         print(f"Name: {char['name']}, Class: {char['class']}, Health: {char['health']}, Strength: {char['strength']}, Defense: {char['defense']}, Speed: {char['speed']}")
 
+
 # Function for a battle
 def battle(team_one, team_two):
-    print("\nBattle Start: Team 1 vs Team 2")
+    print("\nBattle Start:")
     turn_order = sorted(team_one + team_two, key=lambda character: character["speed"], reverse=True)
     
-    # Reset special ability usage for all characters at the start of battle
+    # Reset special ability usage and status effects for all characters at the start of battle
     for character in turn_order:
         character["special_used"] = False
+        character["status_effects"] = []
 
     while True:
         if all(character["health"] <= 0 for character in team_one):
@@ -117,6 +119,19 @@ def battle(team_one, team_two):
         for character in turn_order:
             if character["health"] <= 0:
                 continue
+
+            # Apply status effects at the start of the turn
+            if "stunned" in character["status_effects"]:
+                print(f"{character['name']} is stunned and skips their turn!")
+                character["status_effects"].remove("stunned")
+                continue
+            if "burned" in character["status_effects"]:
+                burn_damage = 5
+                character["health"] -= burn_damage
+                print(f"{character['name']} takes {burn_damage} burn damage!")
+                if character["health"] <= 0:
+                    print(f"{character['name']} has been defeated!")
+                    continue
 
             print(f"\n{character['name']}'s turn!")
             action = input(f"What would you like to do? (attack, use potion, special ability): ").strip().lower()
@@ -132,7 +147,6 @@ def battle(team_one, team_two):
                     target = alive_enemies[enemy_choice]
                     damage = max(1, character["strength"] - target["defense"])
                     target["health"] -= damage
-                    target["health"] = max(target["health"], 0)
                     print(f"{character['name']} attacks {target['name']} for {damage} damage!")
                     if target["health"] <= 0:
                         print(f"{target['name']} has been defeated!")
@@ -152,27 +166,40 @@ def battle(team_one, team_two):
                     print(f"{character['name']} has already used their special ability this battle!")
                 else:
                     character["special_used"] = True  # Mark special ability as used
-                    if character["special_ability"] == "Berserk: Increases strength temporarily.":
-                        character["strength"] += 5
-                        print(f"{character['name']} uses Berserk! Strength increased!")
-                    elif character["special_ability"] == "Fireball: Deals massive damage with a chance to burn.":
-                        damage = random.randint(15, 25)
-                        target = random.choice([enemy for enemy in (team_two if character in team_one else team_one) if enemy["health"] > 0])
-                        target["health"] -= damage
-                        print(f"{character['name']} uses Fireball! {damage} damage dealt!")
-                    elif character["special_ability"] == "Shadow Strike: Deals extra damage and has a chance to stun.":
-                        damage = random.randint(10, 20)
-                        target = random.choice([enemy for enemy in (team_two if character in team_one else team_one) if enemy["health"] > 0])
-                        target["health"] -= damage
-                        print(f"{character['name']} uses Shadow Strike! {damage} damage dealt!")
+                    target_team = team_two if character in team_one else team_one
+                    alive_enemies = [enemy for enemy in target_team if enemy["health"] > 0]
+                    if alive_enemies:
+                        print("Choose an enemy to use your special ability on:")
+                        for i, enemy in enumerate(alive_enemies):
+                            print(f"{i + 1}. {enemy['name']} (Health: {enemy['health']})")
+                        enemy_choice = int(input("Enter the number of the enemy you want to target: ")) - 1
+                        target = alive_enemies[enemy_choice]
+
+                        if character["special_ability"] == "Berserk":
+                            character["strength"] += 5
+                            print(f"{character['name']} uses Berserk! Strength increased!")
+                        elif character["special_ability"] == "Fireball":
+                            damage = random.randint(15, 25)
+                            target["health"] -= damage
+                            target["status_effects"].append("burned")
+                            print(f"{character['name']} uses Fireball on {target['name']}! {damage} damage dealt! {target['name']} is burned!")
+                        elif character["special_ability"] == "Shadow Strike":
+                            damage = random.randint(10, 20)
+                            target["health"] -= damage
+                            if random.random() < 0.5:  # 50% chance to stun
+                                target["status_effects"].append("stunned")
+                                print(f"{character['name']} uses Shadow Strike on {target['name']}! {damage} damage dealt! {target['name']} is stunned!")
+                            else:
+                                print(f"{character['name']} uses Shadow Strike on {target['name']}! {damage} damage dealt!")
                     else:
-                        print("No special ability available!")
+                        print("No enemies left to target!")
 
             else:
                 print("Invalid action. Please choose again.")
 
             if character["health"] <= 0:
                 print(f"{character['name']} has been defeated!")
+
 
 # Main function
 def main():
