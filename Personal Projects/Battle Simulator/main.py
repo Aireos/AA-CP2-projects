@@ -101,6 +101,10 @@ def display_characters(characters):
 def battle(team_one, team_two):
     print("\nBattle Start: Team 1 vs Team 2")
     turn_order = sorted(team_one + team_two, key=lambda character: character["speed"], reverse=True)
+    
+    # Reset special ability usage for all characters at the start of battle
+    for character in turn_order:
+        character["special_used"] = False
 
     while True:
         if all(character["health"] <= 0 for character in team_one):
@@ -144,21 +148,25 @@ def battle(team_one, team_two):
                     print(f"{character['name']} has no Health Potions left!")
 
             elif action == "special ability":
-                if character["special_ability"] == "Berserk: Increases strength temporarily.":
-                    character["strength"] += 5
-                    print(f"{character['name']} uses Berserk! Strength increased!")
-                elif character["special_ability"] == "Fireball: Deals massive damage with a chance to burn.":
-                    damage = random.randint(15, 25)
-                    target = random.choice([enemy for enemy in (team_two if character in team_one else team_one) if enemy["health"] > 0])
-                    target["health"] -= damage
-                    print(f"{character['name']} uses Fireball! {damage} damage dealt!")
-                elif character["special_ability"] == "Shadow Strike: Deals extra damage and has a chance to stun.":
-                    damage = random.randint(10, 20)
-                    target = random.choice([enemy for enemy in (team_two if character in team_one else team_one) if enemy["health"] > 0])
-                    target["health"] -= damage
-                    print(f"{character['name']} uses Shadow Strike! {damage} damage dealt!")
+                if character["special_used"]:
+                    print(f"{character['name']} has already used their special ability this battle!")
                 else:
-                    print("No special ability available!")
+                    character["special_used"] = True  # Mark special ability as used
+                    if character["special_ability"] == "Berserk: Increases strength temporarily.":
+                        character["strength"] += 5
+                        print(f"{character['name']} uses Berserk! Strength increased!")
+                    elif character["special_ability"] == "Fireball: Deals massive damage with a chance to burn.":
+                        damage = random.randint(15, 25)
+                        target = random.choice([enemy for enemy in (team_two if character in team_one else team_one) if enemy["health"] > 0])
+                        target["health"] -= damage
+                        print(f"{character['name']} uses Fireball! {damage} damage dealt!")
+                    elif character["special_ability"] == "Shadow Strike: Deals extra damage and has a chance to stun.":
+                        damage = random.randint(10, 20)
+                        target = random.choice([enemy for enemy in (team_two if character in team_one else team_one) if enemy["health"] > 0])
+                        target["health"] -= damage
+                        print(f"{character['name']} uses Shadow Strike! {damage} damage dealt!")
+                    else:
+                        print("No special ability available!")
 
             else:
                 print("Invalid action. Please choose again.")
