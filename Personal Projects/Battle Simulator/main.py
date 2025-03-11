@@ -179,7 +179,7 @@ def main():
             character = create_character(name, char_class)
             if character:
                 characters.append(character)
-                print(f"Character {name} created successfully!")
+                print(f"{name} created successfully!")
             else:
                 print("Invalid class. Please try again.")
 
