@@ -3,6 +3,7 @@
 import random
 import json
 import os
+import csv
 
 CHARACTER_FILE = "characters.csv"
 
