@@ -5,9 +5,9 @@ import json
 import os
 import csv
 
+CHARACTER_FILE = "not decided"
 from charecter_info import *
 from battle_engine import *
-CHARACTER_FILE = "not decided"
 
 
 # Main user interface
