@@ -1,30 +1,14 @@
 #Alex Anderson, Battle Simulator
 
-import random
-import json
-import os
-import csv
-
-CHARACTER_FILE = "not decided"
 from charecter_info import *
 from battle_engine import *
 
-
 # Main user interface
 def main():
-    def file_placement():
-        while True:
-            CHARACTER_FILE = input("What is the relative path of the csv file that has previous charecters or is where you want them to be saved for the future? (example: charecters.csv) (it has to be a csv file): ")
 
-            if ".csv" not in CHARACTER_FILE:
-                print("that is not a csv file")
-                continue
+    charecter_file = file_placement()
 
-            break
-
-    file_placement()
-
-    characters = load_characters()
+    characters = load_characters(charecter_file)
 
     while True:
         action = input("\nWould you like to add, view, battle, save, or exit?: ").strip().lower()
@@ -95,7 +79,7 @@ def main():
                     print("Those placements do not work. Please try again.")
 
         elif action == "save":
-            save_characters(characters)
+            save_characters(characters, charecter_file)
             print("Characters saved successfully!")
 
         elif action == "exit":

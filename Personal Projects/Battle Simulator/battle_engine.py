@@ -1,5 +1,7 @@
 #Alex Anderson, Battle Simulator, function to run battles
 
+import random
+
 # Function for a battle
 def battle(team_one, team_two):
     print("\nBattle Start:")
