@@ -5,7 +5,7 @@ import json
 import os
 import csv
 
-CHARACTER_FILE = "characters.csv"
+CHARACTER_FILE = input("Where do you want the charecters to be saved to (example: charecters.csv) (it has to be a csv file): ")
 
 # Function to create a character
 def create_character(name, character_class):
@@ -39,9 +39,9 @@ def create_character(name, character_class):
 # Function to determine the character's special ability
 def determine_special_ability(character_class):
     abilities = {
-        "Warrior": "Berserk", #Increases strength temporarily.
-        "Mage": "Fireball", #Deals massive damage with a chance to burn.
-        "Rogue": "Shadow Strike" #Deals extra damage and has a chance to stun.
+        "Warrior": "Berserk", # Increases strength temporarily for one turn
+        "Mage": "Fireball", # Deals massive damage with a chance to burn for one turn
+        "Rogue": "Shadow Strike" # Deals extra damage and has a 50 percent chance to stun for one turn
     }
     return abilities.get(character_class, "None")
 
@@ -104,7 +104,7 @@ def battle(team_one, team_two):
     print("\nBattle Start:")
     turn_order = sorted(team_one + team_two, key=lambda character: character["speed"], reverse=True)
     
-    # Reset special ability usage and status effects for all characters at the start of battle
+    # Resets special ability usage and status effects for all characters at the start of battle
     for character in turn_order:
         character["special_used"] = False
         character["status_effects"] = []
@@ -122,7 +122,7 @@ def battle(team_one, team_two):
             if character["health"] <= 0:
                 continue
 
-            # Apply status effects at the start of the turn
+            # Applys status effects at the start of each turn
             if "stunned" in character["status_effects"]:
                 print(f"{character['name']} is stunned and skips their turn!")
                 character["status_effects"].remove("stunned")
@@ -171,7 +171,7 @@ def battle(team_one, team_two):
                     print(f"{character['name']} has already used their special ability this battle!")
 
                 else:
-                    character["special_used"] = True  # Mark special ability as used
+                    character["special_used"] = True  # Marks the special ability as used
                     target_team = team_two if character in team_one else team_one
                     alive_enemies = [enemy for enemy in target_team if enemy["health"] > 0]
                     if alive_enemies:
@@ -195,7 +195,7 @@ def battle(team_one, team_two):
                         elif character["special_ability"] == "Shadow Strike":
                             damage = random.randint(10, 20)
                             target["health"] -= damage
-                            if random.random() < 0.5:  # 50% chance to stun
+                            if random.random() < 0.5:  # Has a 50 percent chance to stun
                                 target["status_effects"].append("stunned")
                                 print(f"{character['name']} uses Shadow Strike on {target['name']}! {damage} damage dealt! {target['name']} is stunned!")
 
@@ -212,7 +212,7 @@ def battle(team_one, team_two):
                 print(f"{character['name']} has been defeated!")
 
 
-# Main function
+# Main user interface
 def main():
     characters = load_characters()
 
