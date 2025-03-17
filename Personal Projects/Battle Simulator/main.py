@@ -7,43 +7,50 @@ import csv
 
 CHARACTER_FILE = input("Where do you want the charecters to be saved to (example: charecters.csv) (it has to be a csv file): ")
 
-# Function to create a character
-def create_character(name, character_class):
-    classes = {
-        "Warrior": {"health": 120, "strength": 20, "defense": 15, "speed": 10},
-        "Mage": {"health": 80, "strength": 10, "defense": 8, "speed": 12},
-        "Rogue": {"health": 90, "strength": 15, "defense": 10, "speed": 18}
-    }
-
-    if character_class not in classes:
-        return None
-
-    stats = classes[character_class]
-    character = {
-        "name": name,
-        "class": character_class,
-        "level": 1,
-        "experience": 0,
-        "health": stats["health"],
-        "strength": stats["strength"],
-        "defense": stats["defense"],
-        "speed": stats["speed"],
-        "inventory": {"Health Potion": 3},
-        "armor": {"helmet": None, "chestplate": None, "pants": None, "shoes": None},
-        "status_effects": [],
-        "special_ability": determine_special_ability(character_class)
-    }
-
-    return character
 
 # Function to determine the character's special ability
-def determine_special_ability(character_class):
-    abilities = {
-        "Warrior": "Berserk", # Increases strength temporarily for one turn
-        "Mage": "Fireball", # Deals massive damage with a chance to burn for one turn
-        "Rogue": "Shadow Strike" # Deals extra damage and has a 50 percent chance to stun for one turn
-    }
-    return abilities.get(character_class, "None")
+def ability_determiner(character_class):
+    def determine_special_ability(character_class):
+        abilities = {
+            "Warrior": "Berserk", # Increases strength temporarily for one turn
+            "Mage": "Fireball", # Deals massive damage with a chance to burn for one turn
+            "Rogue": "Shadow Strike" # Deals extra damage and has a 50 percent chance to stun for one turn
+        }
+        return abilities.get(character_class, "None")
+    return determine_special_ability(character_class)
+
+
+def charecter_creation(name, character_class):
+    # Function to create a character
+    def create_character(name, character_class):
+        classes = {
+            "Warrior": {"health": 120, "strength": 20, "defense": 15, "speed": 10},
+            "Mage": {"health": 80, "strength": 10, "defense": 8, "speed": 12},
+            "Rogue": {"health": 90, "strength": 15, "defense": 10, "speed": 18}
+        }
+    
+        if character_class not in classes:
+            return None
+    
+        stats = classes[character_class]
+        character = {
+            "name": name,
+            "class": character_class,
+            "level": 1,
+            "experience": 0,
+            "health": stats["health"],
+            "strength": stats["strength"],
+            "defense": stats["defense"],
+            "speed": stats["speed"],
+            "inventory": {"Health Potion": 3},
+            "armor": {"helmet": None, "chestplate": None, "pants": None, "shoes": None},
+            "status_effects": [],
+            "special_ability": ability_determiner(character_class)
+        }
+    
+        return character
+    return create_character(name, character_class)
+
 
 # Function to save characters to a file
 def save_characters(characters, filename=CHARACTER_FILE):
@@ -222,7 +229,7 @@ def main():
         if action == "add":
             name = input("Enter character name: ")
             char_class = input("Choose a class (Warrior, Mage, Rogue): ").capitalize()
-            character = create_character(name, char_class)
+            character = charecter_creation(name, character_class)
             if character:
                 characters.append(character)
                 print(f"{name} created successfully!")
