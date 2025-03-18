@@ -87,11 +87,12 @@ def battle(team_one, team_two):
                         target = alive_enemies[enemy_choice]
 
                         print("point1")
-                        print(character["special_ability"])
+                        print(character)
+                        print("hello")
 
                         if character["special_ability"] == "Berserk":
                             print("point2")
-                            character["strength"] += 5
+                            character['strength'] += 5
                             print(f"{character['name']} uses Berserk! Strength increased!")
 
                         elif character["special_ability"] == "Fireball":
