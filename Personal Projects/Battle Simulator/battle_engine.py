@@ -86,17 +86,22 @@ def battle(team_one, team_two):
                         enemy_choice = int(input("Enter the number of the enemy you want to target: "))
                         target = alive_enemies[enemy_choice]
 
+                        print("point1")
+
                         if character["special_ability"] == "Berserk":
+                            print("point2")
                             character["strength"] += 5
                             print(f"{character['name']} uses Berserk! Strength increased!")
 
                         elif character["special_ability"] == "Fireball":
+                            print("point2")
                             damage = random.randint(15, 25)
                             target["health"] -= damage
                             target["status_effects"].append("burned")
                             print(f"{character['name']} uses Fireball on {target['name']}! {damage} damage dealt! {target['name']} is burned!")
 
                         elif character["special_ability"] == "Shadow Strike":
+                            print("point2")
                             damage = random.randint(10, 20)
                             target["health"] -= damage
                             if random.random() < 0.5:  # Has a 50 percent chance to stun
@@ -105,6 +110,10 @@ def battle(team_one, team_two):
 
                             else:
                                 print(f"{character['name']} uses Shadow Strike on {target['name']}! {damage} damage dealt!")
+                        
+                        else:
+                            print("point2")
+                            print(character["special_ability"])
 
                     else:
                         print("No enemies left to target!")
