@@ -1,6 +1,6 @@
 #Alex Anderson, Battle Simulator
 
-CHARACTER_FILE = "Personal Projects\Battle Simulator\characters.csv"
+CHARACTER_FILE = "Personal Projects/Battle Simulator/characters.csv"
 from charecter_info import *
 from battle_engine import *
 

@@ -3,7 +3,7 @@
 import json
 import os
 import csv
-CHARACTER_FILE = "Personal Projects\Battle Simulator\characters.csv"
+CHARACTER_FILE = "Personal Projects/Battle Simulator/characters.csv"
 
 # Function to determine the character's special ability
 def ability_determiner(character_class):
