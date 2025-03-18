@@ -32,20 +32,19 @@
 
 # 5. 
 # What are good sources for tutorials on a library you have never used before?
-# Their site
-# 
+# Their site, w3 schools, some youtube videos.
 
 
 # 6. 
 # What is a README file?
-# A document that is saved with your python project and it tells the user the needed info to make it run
+# A document that is saved with your python project and it tells the user the needed info to make it run.
 
 
 # 7. 
 # What things belong on a README file?
-# Your python project
+# Your python projects needs things such as the Name of the project, Project description, Installation, Execution and Usage, Used Technologies, Current Features, Contributiong, Contributors, Author Info, Change log, and the License.
 
 
 # 8. 
 # Why do we include README files with our projects?
-# 
+# to give the user importent project information about what it is and who made it.
