@@ -51,3 +51,14 @@ Do not add to this section
 ## Author Info
 ---
 Short paragraph about you (each person in a group project needs one)
+How to contact you if you want that to be available  
+
+
+## Change log
+---
+Do not add to this section  
+
+
+## License
+---
+Do not add to this section  
