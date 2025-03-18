@@ -81,9 +81,9 @@ def battle(team_one, team_two):
                     if alive_enemies:
                         print("Choose an enemy to use your special ability on:")
                         for i, enemy in enumerate(alive_enemies):
-                            print(f"{i + 1}. {enemy['name']} (Health: {enemy['health']})")
+                            print(f"{i}. {enemy['name']} (Health: {enemy['health']})")
 
-                        enemy_choice = int(input("Enter the number of the enemy you want to target: ")) - 1
+                        enemy_choice = int(input("Enter the number of the enemy you want to target: "))
                         target = alive_enemies[enemy_choice]
 
                         if character["special_ability"] == "Berserk":
