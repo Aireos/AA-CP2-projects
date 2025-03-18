@@ -87,6 +87,7 @@ def battle(team_one, team_two):
                         target = alive_enemies[enemy_choice]
 
                         print("point1")
+                        print(character["special_ability"])
 
                         if character["special_ability"] == "Berserk":
                             print("point2")
