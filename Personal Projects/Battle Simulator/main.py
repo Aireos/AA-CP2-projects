@@ -1,14 +1,13 @@
 #Alex Anderson, Battle Simulator
 
+CHARACTER_FILE = "Personal Projects\Battle Simulator\characters.csv"
 from charecter_info import *
 from battle_engine import *
 
 # Main user interface
 def main():
 
-    charecter_file = file_placement()
-
-    characters = load_characters(charecter_file)
+    characters = load_characters()
 
     while True:
         action = input("\nWould you like to add, view, battle, save, or exit?: ").strip().lower()
@@ -79,7 +78,7 @@ def main():
                     print("Those placements do not work. Please try again.")
 
         elif action == "save":
-            save_characters(characters, charecter_file)
+            save_characters(characters)
             print("Characters saved successfully!")
 
         elif action == "exit":

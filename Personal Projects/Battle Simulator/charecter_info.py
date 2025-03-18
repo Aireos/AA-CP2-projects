@@ -3,16 +3,7 @@
 import json
 import os
 import csv
-
-def file_placement():
-        while True:
-            charecter_file = input("What is the relative path of the csv file that has previous charecters or is where you want them to be saved for the future? (example: charecters.csv) (it has to be a csv file): ")
-
-            if ".csv" not in charecter_file:
-                print("that is not a csv file")
-                continue
-
-            return charecter_file
+CHARACTER_FILE = "Personal Projects\Battle Simulator\characters.csv"
 
 # Function to determine the character's special ability
 def ability_determiner(character_class):
@@ -61,8 +52,8 @@ def charecter_creation(name, character_class):
 
 
 # Function to save characters to a file
-def save_characters(characters, charecter_file):
-    with open(charecter_file, "w", newline='') as file:
+def save_characters(characters, filename=CHARACTER_FILE):
+    with open(filename, "w", newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["name", "class", "level", "experience", "health", "strength", "defense", "speed", "inventory", "armor", "status_effects"])
         for character in characters:
@@ -81,10 +72,10 @@ def save_characters(characters, charecter_file):
             ])
 
 # Function to load characters from a file
-def load_characters(charecter_file):
+def load_characters(filename=CHARACTER_FILE):
     characters = []
-    if os.path.exists(charecter_file):
-        with open(charecter_file, "r") as file:
+    if os.path.exists(filename):
+        with open(filename, "r") as file:
             reader = csv.reader(file)
             next(reader)
             for row in reader:
