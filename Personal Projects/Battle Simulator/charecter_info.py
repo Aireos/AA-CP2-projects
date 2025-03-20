@@ -66,9 +66,9 @@ def save_characters(characters, filename=CHARACTER_FILE):
                 character["strength"],
                 character["defense"],
                 character["speed"],
-                json.dumps(character["inventory"]),
-                json.dumps(character["armor"]),
-                json.dumps(character["status_effects"]),
+                character["inventory"],
+                character["armor"],
+                character["status_effects"],
                 character["special_ability"]
             ])
 
@@ -89,10 +89,10 @@ def load_characters(filename=CHARACTER_FILE):
                     "strength": int(row[5]),
                     "defense": int(row[6]),
                     "speed": int(row[7]),
-                    "inventory": json.loads(row[8]),
-                    "armor": json.loads(row[9]),
-                    "status_effects": json.loads(row[10]),
-                    "special_ability": json.loads(row[11])
+                    "inventory": row[8],
+                    "armor": row[9],
+                    "status_effects": row[10],
+                    "special_ability": row[11]
                 }
                 characters.append(character)
     return characters
