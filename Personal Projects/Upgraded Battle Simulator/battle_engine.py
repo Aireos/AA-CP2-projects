@@ -16,10 +16,29 @@ def battle(team_one, team_two):
     while True:
         if all(character["health"] <= 0 for character in team_one):
             print("Team 2 wins!")
+            for character in team_two:
+                xp_requirment = 0
+                character['experience'] += 10
+                for number in range(character['level']):
+                    xp_requirment += 10
+                if character['experience'] >= xp_requirment:
+                    print(character['name'], "levaled up!")
+                    character['level'] += 1
+                    character['experience'] = 0
+                    
             return
         
         if all(character["health"] <= 0 for character in team_two):
             print("Team 1 wins!")
+            for character in team_one:
+                xp_requirment = 0
+                character['experience'] += 10
+                for number in range(character['level']):
+                    xp_requirment += 10
+                if character['experience'] >= xp_requirment:
+                    print(character['name'], "levaled up!")
+                    character['level'] += 1
+                    character['experience'] = 0
             return
 
         for character in turn_order:

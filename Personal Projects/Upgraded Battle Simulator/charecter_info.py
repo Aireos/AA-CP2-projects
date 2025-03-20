@@ -1,6 +1,5 @@
 #Alex Anderson, Battle Simulator, functions that deal with the charecter directly
 
-import json
 import os
 import csv
 CHARACTER_FILE = "Personal Projects/Battle Simulator/characters.csv"
@@ -105,3 +104,22 @@ def display_characters(characters):
     
     for char in characters:
         print(f"Name: {char['name']}, Class: {char['class']}, Health: {char['health']}, Strength: {char['strength']}, Defense: {char['defense']}, Speed: {char['speed']}")
+        import matplotlib.pyplot as plt
+        import numpy as np
+
+        plt.style.use('_mpl-gallery-nogrid')
+
+        # make data
+        x = [char['health'],char['strength'],char['defense'],char['speed']]
+        colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, len(x)))
+
+        # plot
+        fig, ax = plt.subplots()
+        ax.pie(x, colors=colors, radius=3, center=(4, 4),
+            wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True)
+
+        ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
+            ylim=(0, 8), yticks=np.arange(1, 8))
+
+        plt.show()
+        
