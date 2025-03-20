@@ -20,17 +20,19 @@ def charecter_creation(name, character_class):
 
     # Function to create a character
     def create_character(name, character_class):
-        classes = {
-            "Warrior": {"health": 4, "strength": 3, "defense": 3, "speed": 2},
-            "Mage": {"health": 1, "strength": 7, "defense": 1, "speed": 3},
-            "Rogue": {"health": 2, "strength": 4, "defense": 2, "speed": 4}
-        }
+        classes = ["Warrior","Mage","Rogue"]
     
         if character_class not in classes:
             return None
 
         if character_class == "Warrior":
-            "Warrior": {"health": 4, "strength": 3, "defense": 3, "speed": 2}
+            character_class = ["health": 4, "strength": 3, "defense": 3, "speed": 2]
+            
+        elif character_class == "Mage":
+            character_class = ["health": 1, "strength": 7, "defense": 1, "speed": 3]
+        
+        elif character_class == "Rogue"
+            character_class = ["health": 2, "strength": 4, "defense": 2, "speed": 4]
 
         character = {
             "name": name,
