@@ -147,7 +147,7 @@ def display_characters(characters):
                                 frame=True)
 
         # Add legend (key)
-        ax.legend(wedges, labels, title="Stats", loc="upper right", bbox_to_anchor=(1, 1))
+        ax.legend(wedges, labels, title=character['name'], loc="upper right", bbox_to_anchor=(1, 1))
 
         # Set limits
         ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
