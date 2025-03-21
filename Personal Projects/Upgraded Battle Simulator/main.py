@@ -24,7 +24,7 @@ def main():
                 print("Invalid class. Please try again.")
 
         elif action == "view":
-            display_characters(characters)
+            display_character(characters)
 
         elif action == "battle":
             if len(characters) < 4:
