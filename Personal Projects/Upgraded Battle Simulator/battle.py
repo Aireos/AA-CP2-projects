@@ -1,7 +1,7 @@
 #Alex Anderson, Battle Simulator, function to run battles
 
 import random
-CHARACTER_FILE = "Personal Projects/Battle Simulator/characters.csv"
+CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/main.py"
 
 # Function for a battle
 def battle(team_one, team_two):

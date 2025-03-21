@@ -2,7 +2,7 @@
 
 import os
 import csv
-CHARACTER_FILE = "Personal Projects/Battle Simulator/characters.csv"
+CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/main.py"
 
 # Function to determine the character's special ability
 def ability_determiner(character_class):
@@ -26,13 +26,13 @@ def charecter_creation(name, character_class):
             return None
 
         if character_class == "Warrior":
-            character_class = {"health": 4, "strength": 3, "defense": 3, "speed": 2}
+            character_class = {"name": "Warrior", "health": 4, "strength": 3, "defense": 3, "speed": 2}
             
         elif character_class == "Mage":
-            character_class = {"health": 1, "strength": 7, "defense": 1, "speed": 3}
+            character_class = {"name": "Mage", "health": 1, "strength": 7, "defense": 1, "speed": 3}
         
         elif character_class == "Rogue":
-            character_class = {"health": 2, "strength": 4, "defense": 2, "speed": 4}
+            character_class = {"name": "Rogue", "health": 2, "strength": 4, "defense": 2, "speed": 4}
 
         character = {
             "name": name,
@@ -43,7 +43,7 @@ def charecter_creation(name, character_class):
             "inventory": {"Health Potion": 3},
             "armor": {"helmet": None, "chestplate": None, "pants": None, "shoes": None},
             "status_effects": [],
-            "special_ability": ability_determiner(character_class)
+            "special_ability": ability_determiner(character_class["name"])
         }
     
         return character
@@ -104,10 +104,10 @@ def xp_giver(character):
 
 def stat_updater(characters):
     for character in characters:
-        character["stats"]["health"] = character["class"]["health"] * character["level"]
-        character["stats"]["strength"] = character["class"]["strength"] * character["level"]
-        character["stats"]["defense"] = character["class"]["defense"] * character["level"]
-        character["stats"]["speed"] = character["class"]["speed"] * character["level"]
+        character["stats"]["health"] = int(character["class"]["health"] * character["level"])
+        character["stats"]["strength"] = int(character["class"]["strength"] * character["level"])
+        character["stats"]["defense"] = int(character["class"]["defense"] * character["level"])
+        character["stats"]["speed"] = int(character["class"]["speed"] * character["level"])
     return characters
 
 # Function to display all characters
@@ -115,7 +115,7 @@ def display_characters(characters):
     if not characters:
         print("No characters found!")
         return
-    
+
     import matplotlib.pyplot as plt
     import numpy as np
 
