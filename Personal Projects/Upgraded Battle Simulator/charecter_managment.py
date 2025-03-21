@@ -121,20 +121,24 @@ def character_statistics(characters):
     df = pd.DataFrame(characters)
 
     if "stats" in df.columns:
-        stats_df = pd.json_normalize(df["stats"])  # Flatten nested stats dictionary
+        stats_df = pd.json_normalize(df["stats"])  # Flattens nested stats dictionary
 
         print("Character Statistics:")
-        print(stats_df.describe())  # Show statistical summary
+        print(stats_df.describe())  # Shows statistical summary for all characters
 
-        # Find and print the character with the highest strength
+        # Finds and prints the character's name with the highest strength and their strength stat
         max_strength_idx = stats_df["strength"].idxmax()
         print(f"\nHighest Strength Character: {df.loc[max_strength_idx, 'name']} - Strength: {stats_df.loc[max_strength_idx, 'strength']}")
 
-        # Find and print the character with the highest health
+        # Finds and prints the character name with the highest health and their health stat
         max_health_idx = stats_df["health"].idxmax()
         print(f"\nHighest Health Character: {df.loc[max_health_idx, 'name']} - Health: {stats_df.loc[max_health_idx, 'health']}")
 
-        # Find and print the fastest character
+        # Finds and prints the character's name that has the highest defense and their defense stat
+        max_speed_idx = stats_df["defense"].idxmax()
+        print(f"\nToughest Character: {df.loc[max_speed_idx, 'name']} - Defense: {stats_df.loc[max_speed_idx, 'defense']}")
+
+        # Finds and prints the fastest character's name and their speed stat
         max_speed_idx = stats_df["speed"].idxmax()
         print(f"\nFastest Character: {df.loc[max_speed_idx, 'name']} - Speed: {stats_df.loc[max_speed_idx, 'speed']}")
 
@@ -150,8 +154,10 @@ def display_character(characters):
         character_statistics(characters)
     
     else:
+        character_found = False
         for character in characters:
             if which_character == character['name']:
+                character_found = True
 
                 print("Name:", character['name'], "| Health:", int(character['stats']['health']), "| Strength:", int(character['stats']['strength']), "| Defense:", int(character['stats']['defense']), "| Speed:", int(character['stats']['speed']))
 
