@@ -204,12 +204,14 @@ def display_character(characters):
             print("That is not a characters name.")
             
 def leveling_chart(level_amount):
-
     plt.style.use('_mpl-gallery')
     
     # make data:
     x = 0.5 + np.arange(8)
+
+    xp_requirments = []
     for number in range(level_amount):
+        xp_requirments.append(10*number)
         
     y = [4.8, 5.5, 3.5, 4.6, 6.5, 6.6, 2.6, 3.0]
     
