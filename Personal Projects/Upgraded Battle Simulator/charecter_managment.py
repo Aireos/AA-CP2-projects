@@ -126,15 +126,17 @@ def character_statistics(characters):
         print("Character Statistics:")
         print(stats_df.describe())  # Show statistical summary
 
-        # Find characters with highest/lowest stats
-        print("\nHighest Strength Character:")
-        print(df.loc[stats_df["strength"].idxmax(), ["name", "class"]])
+        # Find and print the character with the highest strength
+        max_strength_idx = stats_df["strength"].idxmax()
+        print(f"\nHighest Strength Character: {df.loc[max_strength_idx, 'name']} - Strength: {stats_df.loc[max_strength_idx, 'strength']}")
 
-        print("\nHighest Health Character:")
-        print(df.loc[stats_df["health"].idxmax(), ["name", "class"]])
+        # Find and print the character with the highest health
+        max_health_idx = stats_df["health"].idxmax()
+        print(f"\nHighest Health Character: {df.loc[max_health_idx, 'name']} - Health: {stats_df.loc[max_health_idx, 'health']}")
 
-        print("\nFastest Character:")
-        print(df.loc[stats_df["speed"].idxmax(), ["name", "class"]])
+        # Find and print the fastest character
+        max_speed_idx = stats_df["speed"].idxmax()
+        print(f"\nFastest Character: {df.loc[max_speed_idx, 'name']} - Speed: {stats_df.loc[max_speed_idx, 'speed']}")
 
 # Function to display all characters
 def display_character(characters):
