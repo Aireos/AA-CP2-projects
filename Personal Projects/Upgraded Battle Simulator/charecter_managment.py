@@ -116,15 +116,16 @@ def display_characters(characters):
         print("No characters found!")
         return
     
+    import matplotlib.pyplot as plt
+    import numpy as np
+
     for character in characters:
         print(f"Health: {character['stats']["health"]}, Strength: {character['stats']["strength"]}, Defense: {character['stats']["defense"]}, Speed: {character['stats']["speed"]}")
-        import matplotlib.pyplot as plt
-        import numpy as np
 
         plt.style.use('_mpl-gallery-nogrid')
 
         # make data
-        x = [char['health'],char['strength'],char['defense'],char['speed']]
+        x = [character['stats']["health"],character['stats']["strength"],character['stats']["defense"],character['stats']["speed"]]
         colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, len(x)))
 
         # plot
