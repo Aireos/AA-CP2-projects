@@ -124,21 +124,36 @@ def display_characters(characters):
     import numpy as np
 
     for character in characters:
-        print("Health:", int(character['stats']['health']), "Strength:", int(character['stats']['strength']), "Defense:", int(character['stats']['defense']), "Speed:", int(character['stats']['speed']))
+        import matplotlib.pyplot as plt
+        import numpy as np
+
+        print("Name:", character['name'], "| Health:", int(character['stats']['health']), "| Strength:", int(character['stats']['strength']), "| Defense:", int(character['stats']['defense']), "| Speed:", int(character['stats']['speed']))
 
         plt.style.use('_mpl-gallery-nogrid')
 
-        # make data
-        x = [int(character['stats']["health"]),int(character['stats']["strength"]),int(character['stats']["defense"]),int(character['stats']["speed"])]
-        colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, len(x)))
+        # Define data
+        labels = ["Health", "Strength", "Defense", "Speed"]
+        x = [int(character['stats']["health"]),
+            int(character['stats']["strength"]),
+            int(character['stats']["defense"]),
+            int(character['stats']["speed"])]
 
-        # plot
+        colors = plt.get_cmap('coolwarm')(np.linspace(0.2, 0.7, len(x)))
+
+        # Create the plot
         fig, ax = plt.subplots()
-        ax.pie(x, colors=colors, radius=3, center=(4, 4),
-            wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True)
+        wedges, texts = ax.pie(x, colors=colors, radius=3, center=(4, 4),
+                                wedgeprops={"linewidth": 1, "edgecolor": "white"}, 
+                                frame=True)
 
+        # Add legend (key)
+        ax.legend(wedges, labels, title="Stats", loc="upper right", bbox_to_anchor=(1, 1))
+
+        # Set limits
         ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
             ylim=(0, 8), yticks=np.arange(1, 8))
 
+        # Show the plot
         plt.show()
+
         
