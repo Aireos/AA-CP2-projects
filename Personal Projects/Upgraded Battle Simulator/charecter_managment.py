@@ -159,7 +159,7 @@ def display_character(characters):
         print("No characters found!")
         return
 
-    which_character = input("Which charecters info do you want to view?(type all to see generalized statistics): ").strip().capitalize()
+    which_character = input("Which charecters info do you want to view?(type all to see generalized statistics): ").strip()
 
     if which_character == "All":
         character_statistics(characters)
@@ -194,8 +194,11 @@ def display_character(characters):
                 ax.legend(wedges, labels, title=character['name'], loc="upper right", bbox_to_anchor=(1, 1))
 
                 # Set limits
-                ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-                    ylim=(0, 8), yticks=np.arange(1, 8))
+                ax.set(xlim=(0, 20), xticks=np.arange(0, 0),
+                    ylim=(0, 20), yticks=np.arange(0, 0))
 
                 # Show the plot
                 plt.show()
+
+        if character_found == False:
+            print("That is not a characters name.")
