@@ -3,6 +3,9 @@
 import os
 import csv
 import ast
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/charecters.csv"
 
 # Function to determine the character's special ability
@@ -114,48 +117,65 @@ def stat_updater(characters):
         character["stats"]["speed"] = int(character["class"]["speed"] * character["level"])
     return characters
 
+def character_statistics(characters):
+    df = pd.DataFrame(characters)
+
+    if "stats" in df.columns:
+        stats_df = pd.json_normalize(df["stats"])  # Flatten nested stats dictionary
+
+        print("Character Statistics:")
+        print(stats_df.describe())  # Show statistical summary
+
+        # Find characters with highest/lowest stats
+        print("\nHighest Strength Character:")
+        print(df.loc[stats_df["strength"].idxmax(), ["name", "class"]])
+
+        print("\nHighest Health Character:")
+        print(df.loc[stats_df["health"].idxmax(), ["name", "class"]])
+
+        print("\nFastest Character:")
+        print(df.loc[stats_df["speed"].idxmax(), ["name", "class"]])
+
 # Function to display all characters
 def display_character(characters):
     if not characters:
         print("No characters found!")
         return
 
-    import matplotlib.pyplot as plt
-    import numpy as np
+    which_character = input("Which charecters info do you want to view?(type all to see generalized statistics): ").strip().capitalize()
 
-    which_character = input("Which charecters info do you want to view?: ").strip().capitalize()
-    for character in characters:
-        if which_character == character['name']:
-            import matplotlib.pyplot as plt
-            import numpy as np
+    if which_character == "All":
+        character_statistics(characters)
+    
+    else:
+        for character in characters:
+            if which_character == character['name']:
 
-            print("Name:", character['name'], "| Health:", int(character['stats']['health']), "| Strength:", int(character['stats']['strength']), "| Defense:", int(character['stats']['defense']), "| Speed:", int(character['stats']['speed']))
+                print("Name:", character['name'], "| Health:", int(character['stats']['health']), "| Strength:", int(character['stats']['strength']), "| Defense:", int(character['stats']['defense']), "| Speed:", int(character['stats']['speed']))
 
-            plt.style.use('_mpl-gallery-nogrid')
+                plt.style.use('_mpl-gallery-nogrid')
 
-            # Define data
-            labels = ["Health", "Strength", "Defense", "Speed"]
-            x = [int(character['stats']["health"]),
-                int(character['stats']["strength"]),
-                int(character['stats']["defense"]),
-                int(character['stats']["speed"])]
+                # Define data
+                labels = ["Health", "Strength", "Defense", "Speed"]
+                x = [int(character['stats']["health"]),
+                    int(character['stats']["strength"]),
+                    int(character['stats']["defense"]),
+                    int(character['stats']["speed"])]
 
-            colors = plt.get_cmap('coolwarm')(np.linspace(0.2, 0.7, len(x)))
+                colors = plt.get_cmap('coolwarm')(np.linspace(0.2, 0.7, len(x)))
 
-            # Create the plot
-            fig, ax = plt.subplots()
-            wedges, texts = ax.pie(x, colors=colors, radius=3, center=(4, 4),
-                                    wedgeprops={"linewidth": 1, "edgecolor": "white"}, 
-                                    frame=True)
+                # Create the plot
+                fig, ax = plt.subplots()
+                wedges, texts = ax.pie(x, colors=colors, radius=3, center=(4, 4),
+                                        wedgeprops={"linewidth": 1, "edgecolor": "white"}, 
+                                        frame=True)
 
-            # Add legend (key)
-            ax.legend(wedges, labels, title=character['name'], loc="upper right", bbox_to_anchor=(1, 1))
+                # Add legend (key)
+                ax.legend(wedges, labels, title=character['name'], loc="upper right", bbox_to_anchor=(1, 1))
 
-            # Set limits
-            ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-                ylim=(0, 8), yticks=np.arange(1, 8))
+                # Set limits
+                ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
+                    ylim=(0, 8), yticks=np.arange(1, 8))
 
-            # Show the plot
-            plt.show()
-
-        
+                # Show the plot
+                plt.show()
