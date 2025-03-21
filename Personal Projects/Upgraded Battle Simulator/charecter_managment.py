@@ -6,6 +6,8 @@ import ast
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from faker import Faker
+fake = Faker()
 CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/charecters.csv"
 
 # Function to determine the character's special ability
@@ -19,6 +21,12 @@ def ability_determiner(character_class):
         return abilities.get(character_class, "None")
     return determine_special_ability(character_class)
 
+#Function to make character backstorys
+def backstory_maker():
+    part_one = fake.job()
+    part_two = fake.company()
+    background = f"They were a {part_one} working for {part_two} before becoming a adventurer."
+    return background
 
 def charecter_creation(name, character_class):
 
@@ -47,7 +55,8 @@ def charecter_creation(name, character_class):
             "inventory": {"Health Potion": 3},
             "armor": {"helmet": None, "chestplate": None, "pants": None, "shoes": None},
             "status_effects": [],
-            "special_ability": ability_determiner(character_class["name"])
+            "special_ability": ability_determiner(character_class["name"]),
+            "backstory": backstory_maker()
         }
     
         return character
@@ -59,7 +68,7 @@ def charecter_creation(name, character_class):
 def save_characters(characters, filename=CHARACTER_FILE):
     with open(filename, "w", newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(["name", "class", "stats", "level", "experience", "inventory", "armor", "status_effects"])
+        writer.writerow(["name", "class", "stats", "level", "experience", "inventory", "armor", "status_effects", "backstory"])
         for character in characters:
             writer.writerow([
                 character["name"],
@@ -70,7 +79,8 @@ def save_characters(characters, filename=CHARACTER_FILE):
                 character["inventory"],
                 character["armor"],
                 character["status_effects"],
-                character["special_ability"]
+                character["special_ability"],
+                character["backstory"]
             ])
 
 # Function to load characters from a file
@@ -91,7 +101,8 @@ def load_characters(filename=CHARACTER_FILE):
                         "inventory": ast.literal_eval(row[5]),
                         "armor": row[6],
                         "status_effects": row[7],
-                        "special_ability": row[8]
+                        "special_ability": row[8],
+                        "backstory": row[9]
                     }
                     characters.append(character)
             except:
@@ -160,6 +171,7 @@ def display_character(characters):
                 character_found = True
 
                 print("Name:", character['name'], "| Health:", int(character['stats']['health']), "| Strength:", int(character['stats']['strength']), "| Defense:", int(character['stats']['defense']), "| Speed:", int(character['stats']['speed']))
+                print("Backstory:", character['backstory'])
 
                 plt.style.use('_mpl-gallery-nogrid')
 
