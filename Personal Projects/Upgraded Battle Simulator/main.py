@@ -2,6 +2,8 @@
 
 from charecter_managment import *
 from battle import *
+from faker import Faker
+fake = Faker()
 
 # Main user interface
 def main():
@@ -12,7 +14,9 @@ def main():
         action = input("\nWould you like to add, view, battle, or exit?: ").strip().lower()
 
         if action == "add":
-            name = input("Enter character name: ")
+            name = input("Enter character name (type random to have a random name be generated): ")
+            if name == "random":
+                name = fake.name()
             character_class = input("Choose a class (Warrior, Mage, Rogue): ").capitalize()
             character = charecter_creation(name, character_class)
             if character:
