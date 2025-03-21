@@ -2,6 +2,7 @@
 
 import os
 import csv
+import ast
 CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/charecters.csv"
 
 # Function to determine the character's special ability
@@ -80,11 +81,11 @@ def load_characters(filename=CHARACTER_FILE):
                 for row in reader:
                     character = {
                         "name": row[0],
-                        "class": row[1],
-                        "stats": row[2],
+                        "class": ast.literal_eval(row[1]),
+                        "stats": ast.literal_eval(row[2]),
                         "level": int(row[3]),
                         "experience": int(row[4]),
-                        "inventory": row[5],
+                        "inventory": ast.literal_eval(row[5]),
                         "armor": row[6],
                         "status_effects": row[7],
                         "special_ability": row[8]
@@ -123,12 +124,12 @@ def display_characters(characters):
     import numpy as np
 
     for character in characters:
-        print(f"Health: {character['stats']["health"]}, Strength: {character['stats']["strength"]}, Defense: {character['stats']["defense"]}, Speed: {character['stats']["speed"]}")
+        print("Health:", int(character['stats']['health']), "Strength:", int(character['stats']['strength']), "Defense:", int(character['stats']['defense']), "Speed:", int(character['stats']['speed']))
 
         plt.style.use('_mpl-gallery-nogrid')
 
         # make data
-        x = [character['stats']["health"],character['stats']["strength"],character['stats']["defense"],character['stats']["speed"]]
+        x = [int(character['stats']["health"]),int(character['stats']["strength"]),int(character['stats']["defense"]),int(character['stats']["speed"])]
         colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, len(x)))
 
         # plot

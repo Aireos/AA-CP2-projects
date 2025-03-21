@@ -1,1 +1,2 @@
-name, class, stats, level, experience, inventory, armor, status_effects
+name,class,stats,level,experience,inventory,armor,status_effects
+Aireos,"{'name': 'Mage', 'health': 1, 'strength': 7, 'defense': 1, 'speed': 3}","{'name': 'Mage', 'health': 1, 'strength': 7, 'defense': 1, 'speed': 3}",1,0,{'Health Potion': 3},"{'helmet': None, 'chestplate': None, 'pants': None, 'shoes': None}",[],Fireball
