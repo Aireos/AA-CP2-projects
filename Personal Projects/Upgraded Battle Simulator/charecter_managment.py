@@ -2,7 +2,7 @@
 
 import os
 import csv
-CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/main.py"
+CHARACTER_FILE = "Personal Projects/Upgraded Battle Simulator/charecters.csv"
 
 # Function to determine the character's special ability
 def ability_determiner(character_class):
@@ -76,19 +76,22 @@ def load_characters(filename=CHARACTER_FILE):
         with open(filename, "r") as file:
             reader = csv.reader(file)
             next(reader)
-            for row in reader:
-                character = {
-                    "name": row[0],
-                    "class": row[1],
-                    "stats": row[2],
-                    "level": int(row[3]),
-                    "experience": int(row[4]),
-                    "inventory": row[5],
-                    "armor": row[6],
-                    "status_effects": row[7],
-                    "special_ability": row[8]
-                }
-                characters.append(character)
+            try:
+                for row in reader:
+                    character = {
+                        "name": row[0],
+                        "class": row[1],
+                        "stats": row[2],
+                        "level": int(row[3]),
+                        "experience": int(row[4]),
+                        "inventory": row[5],
+                        "armor": row[6],
+                        "status_effects": row[7],
+                        "special_ability": row[8]
+                    }
+                    characters.append(character)
+            except:
+                return []
     return characters
 
 def xp_giver(character):
