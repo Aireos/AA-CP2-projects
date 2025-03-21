@@ -26,17 +26,18 @@ def charecter_creation(name, character_class):
             return None
 
         if character_class == "Warrior":
-            character_class = ["health": 4, "strength": 3, "defense": 3, "speed": 2]
+            character_class = {"health": 4, "strength": 3, "defense": 3, "speed": 2}
             
         elif character_class == "Mage":
-            character_class = ["health": 1, "strength": 7, "defense": 1, "speed": 3]
+            character_class = {"health": 1, "strength": 7, "defense": 1, "speed": 3}
         
-        elif character_class == "Rogue"
-            character_class = ["health": 2, "strength": 4, "defense": 2, "speed": 4]
+        elif character_class == "Rogue":
+            character_class = {"health": 2, "strength": 4, "defense": 2, "speed": 4}
 
         character = {
             "name": name,
             "class": character_class,
+            "stats": character_class,
             "level": 1,
             "experience": 0,
             "inventory": {"Health Potion": 3},
@@ -54,11 +55,12 @@ def charecter_creation(name, character_class):
 def save_characters(characters, filename=CHARACTER_FILE):
     with open(filename, "w", newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(["name", "class", "level", "experience", "health", "strength", "defense", "speed", "inventory", "armor", "status_effects"])
+        writer.writerow(["name", "class", "stats", "level", "experience", "inventory", "armor", "status_effects"])
         for character in characters:
             writer.writerow([
                 character["name"],
                 character["class"],
+                character["stats"],
                 character["level"],
                 character["experience"],
                 character["inventory"],
@@ -78,13 +80,34 @@ def load_characters(filename=CHARACTER_FILE):
                 character = {
                     "name": row[0],
                     "class": row[1],
-                    "level": int(row[2]),
-                    "inventory": row[8],
-                    "armor": row[9],
-                    "status_effects": row[10],
-                    "special_ability": row[11]
+                    "stats": row[2],
+                    "level": int(row[3]),
+                    "experience": int(row[4]),
+                    "inventory": row[5],
+                    "armor": row[6],
+                    "status_effects": row[7],
+                    "special_ability": row[8]
                 }
                 characters.append(character)
+    return characters
+
+def xp_giver(character):
+    xp_requirment = 0
+    character['experience'] += 10
+    for number in range(character['level']):
+        xp_requirment += 10*number
+    if character['experience'] >= xp_requirment:
+        print(character['name'], "levaled up!")
+        character['level'] += 1
+        character['experience'] = 0
+    return character
+
+def stat_updater(characters):
+    for character in characters:
+        character["stats"]["health"] = character["class"]["health"] * character["level"]
+        character["stats"]["strength"] = character["class"]["strength"] * character["level"]
+        character["stats"]["defense"] = character["class"]["defense"] * character["level"]
+        character["stats"]["speed"] = character["class"]["speed"] * character["level"]
     return characters
 
 # Function to display all characters

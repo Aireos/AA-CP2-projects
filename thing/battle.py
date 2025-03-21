@@ -6,40 +6,21 @@ CHARACTER_FILE = "Personal Projects/Battle Simulator/characters.csv"
 # Function for a battle
 def battle(team_one, team_two):
     print("\nBattle Start:")
-    turn_order = sorted(team_one + team_two, key=lambda character: character["speed"], reverse=True)
+    turn_order = sorted(team_one + team_two, key=lambda character: character["class"]["speed"], reverse=True)
     
-    # Resets special ability usage and status effects for all characters at the start of battle
+    # Resets special ability usage, status effects, and all stats for all characters at the start of battle
     for character in turn_order:
         character["special_used"] = False
         character["status_effects"] = []
 
     while True:
         if all(character["health"] <= 0 for character in team_one):
-            print("Team 2 wins!")
-            for character in team_two:
-                xp_requirment = 0
-                character['experience'] += 10
-                for number in range(character['level']):
-                    xp_requirment += 10
-                if character['experience'] >= xp_requirment:
-                    print(character['name'], "levaled up!")
-                    character['level'] += 1
-                    character['experience'] = 0
-                    
-            return
+            print("Team 2 wins!")    
+            return team_two
         
         if all(character["health"] <= 0 for character in team_two):
             print("Team 1 wins!")
-            for character in team_one:
-                xp_requirment = 0
-                character['experience'] += 10
-                for number in range(character['level']):
-                    xp_requirment += 10
-                if character['experience'] >= xp_requirment:
-                    print(character['name'], "levaled up!")
-                    character['level'] += 1
-                    character['experience'] = 0
-            return
+            return team_one
 
         for character in turn_order:
             if character["health"] <= 0:

@@ -9,7 +9,7 @@ def main():
     characters = load_characters()
 
     while True:
-        action = input("\nWould you like to add, view, battle, save, or exit?: ").strip().lower()
+        action = input("\nWould you like to add, view, battle, or exit?: ").strip().lower()
 
         if action == "add":
             name = input("Enter character name: ")
@@ -17,6 +17,7 @@ def main():
             character = charecter_creation(name, character_class)
             if character:
                 characters.append(character)
+                save_characters(characters)
                 print(f"{name} created successfully!")
                 
             else:
@@ -71,14 +72,13 @@ def main():
                     continue
 
                 try:
-                    battle([characters[int(team_one[0])],characters[int(team_one[1])]],[characters[int(team_two[0])],characters[int(team_two[1])]])
-
+                    wining_team = battle([characters[int(team_one[0])],characters[int(team_one[1])]],[characters[int(team_two[0])],characters[int(team_two[1])]])
+                    for character in wining_team:
+                        character = xp_giver(character)
+                        characters = stat_updater(characters)
+                        save_characters(characters)
                 except:
                     print("Those placements do not work. Please try again.")
-
-        elif action == "save":
-            save_characters(characters)
-            print("Characters saved successfully!")
 
         elif action == "exit":
             print("Exiting game. Goodbye!")
