@@ -116,8 +116,8 @@ def display_characters(characters):
         print("No characters found!")
         return
     
-    for char in characters:
-        print(f"Name: {char['name']}, Class: {char['class']}, Health: {char['health']}, Strength: {char['strength']}, Defense: {char['defense']}, Speed: {char['speed']}")
+    for character in characters:
+        print(f"Health: {character['stats']["health"]}, Strength: {character['stats']["strength"]}, Defense: {character['stats']["defense"]}, Speed: {character['stats']["speed"]}")
         import matplotlib.pyplot as plt
         import numpy as np
 
