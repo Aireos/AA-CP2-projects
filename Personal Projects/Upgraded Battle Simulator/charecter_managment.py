@@ -187,7 +187,11 @@ def display_character(characters):
         character_statistics(characters)
     
     if which_character == "leveling":
-        level_amount = int(input("What level do you want the chart to go to?: "))
+        try:
+            level_amount = int(input("What level do you want the chart to go to?: "))
+        except:
+            print("that was not a number, will default to 10")
+            level_amount = 10
         leveling_chart(level_amount)
 
     else:
@@ -233,20 +237,20 @@ def leveling_chart(level_amount):
     plt.style.use('_mpl-gallery')
     
     # make data:
-    x = 0.5 + np.arange(8)
+    x = np.arange(level_amount)
 
     xp_requirments = []
     for number in range(level_amount):
         xp_requirments.append(10*number)
-        
+
     y = xp_requirments
     
     # plot
     fig, ax = plt.subplots()
     
-    ax.bar(x, y, width=1, edgecolor="white", linewidth=0.7)
+    ax.bar(x, y, width=0.5, edgecolor="white", linewidth=0.1)
     
-    ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-           ylim=(0, 8), yticks=np.arange(1, 8))
+    ax.set(xlim=(0, level_amount), xticks=np.arange(1, level_amount),
+           ylim=(0, level_amount*10), yticks=np.arange(1, level_amount*10))
     
     plt.show()
