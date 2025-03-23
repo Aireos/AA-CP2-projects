@@ -28,6 +28,25 @@ def backstory_maker():
     background = f"They were a {part_one} working for {part_two} before becoming a adventurer."
     return background
 
+#Fucntion to make character characteristics
+def characteristics_maker():
+
+    # generater of random characteristics
+    hair_color = fake.color_name()  # Random hair color
+    eye_color = fake.random_element(['Blue', 'Green', 'Brown', 'Hazel', 'Gray'])
+    height = fake.random_int(min=150, max=200)  # Random height in cm
+    weight = fake.random_int(min=40, max=100)  # Random weight in kg
+
+    characteristics = {
+        "Hair": hair_color,
+        "Eye": eye_color,
+        "Height": height,
+        "Weight": weight
+    }
+
+    return characteristics
+
+
 def charecter_creation(name, character_class):
 
     # Function to create a character
@@ -56,7 +75,8 @@ def charecter_creation(name, character_class):
             "armor": {"helmet": None, "chestplate": None, "pants": None, "shoes": None},
             "status_effects": [],
             "special_ability": ability_determiner(character_class["name"]),
-            "backstory": backstory_maker()
+            "backstory": backstory_maker(),
+            "characteristics": characteristics_maker()
         }
     
         return character
@@ -68,7 +88,7 @@ def charecter_creation(name, character_class):
 def save_characters(characters, filename=CHARACTER_FILE):
     with open(filename, "w", newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(["name", "class", "stats", "level", "experience", "inventory", "armor", "status_effects", "backstory"])
+        writer.writerow(["name", "class", "stats", "level", "experience", "inventory", "armor", "status_effects", "backstory", "characteristics"])
         for character in characters:
             writer.writerow([
                 character["name"],
@@ -81,6 +101,7 @@ def save_characters(characters, filename=CHARACTER_FILE):
                 character["status_effects"],
                 character["special_ability"],
                 character["backstory"]
+                character["characteristics"]
             ])
 
 # Function to load characters from a file
@@ -102,7 +123,8 @@ def load_characters(filename=CHARACTER_FILE):
                         "armor": row[6],
                         "status_effects": row[7],
                         "special_ability": row[8],
-                        "backstory": row[9]
+                        "backstory": row[9],
+                        "characteristics": row[10]
                     }
                     characters.append(character)
             except:
