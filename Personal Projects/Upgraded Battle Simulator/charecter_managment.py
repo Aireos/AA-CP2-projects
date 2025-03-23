@@ -100,7 +100,7 @@ def save_characters(characters, filename=CHARACTER_FILE):
                 character["armor"],
                 character["status_effects"],
                 character["special_ability"],
-                character["backstory"]
+                character["backstory"],
                 character["characteristics"]
             ])
 
