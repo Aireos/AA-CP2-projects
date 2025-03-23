@@ -181,11 +181,15 @@ def display_character(characters):
         print("No characters found!")
         return
 
-    which_character = input("Which charecters info do you want to view?(type all to see generalized statistics): ").strip()
+    which_character = input("Which charecters info do you want to view?(type all to see generalized statistics)(type leveling to see leveling chart): ").strip()
 
-    if which_character == "All":
+    if which_character == "all":
         character_statistics(characters)
     
+    if which_character == "leveling":
+        level_amount = int(input("What level do you want the chart to go to?: "))
+        leveling_chart(level_amount)
+
     else:
         character_found = False
         for character in characters:
@@ -235,7 +239,7 @@ def leveling_chart(level_amount):
     for number in range(level_amount):
         xp_requirments.append(10*number)
         
-    y = [4.8, 5.5, 3.5, 4.6, 6.5, 6.6, 2.6, 3.0]
+    y = xp_requirments
     
     # plot
     fig, ax = plt.subplots()
