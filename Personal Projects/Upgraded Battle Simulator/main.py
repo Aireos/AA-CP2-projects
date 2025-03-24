@@ -32,7 +32,7 @@ def main():
 
         elif action == "battle":
             if len(characters) < 4:
-                print("Not enough characters for a 2v2 battle. Please create more characters.")
+                print("Not enough characters for a 2v2 battle. Please create at least 4 characters.")
 
             else:
                 placement = 0
