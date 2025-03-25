@@ -29,13 +29,15 @@ c_call - does something
 # F5
 
 # What is testing?
-#
+    # Going through the code trying to break it, have other people test it because they will not read it like you do
 
 # What are boundary conditions?
-#
+    # They are the user inputs that are strange and/or the most likely to cause probloms, examples: highs, lows and inbetweens
 
 # How do you handle when users give strange inputs?
-#
+    # by doing a try except 
+    # by doing a uesr input loop
+    # by doing a if else
 
 
 def add(num_one, num_two):
