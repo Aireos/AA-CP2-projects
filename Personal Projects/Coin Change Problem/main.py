@@ -15,29 +15,66 @@ def pull_denominations(country):
             for item in lines[0]:
                 item_list = item.split("-")
                 denomination_name = item_list[0] 
-                denomination_worth = item_list[1]
+                denomination_worth = int(item_list[1])
                 denominations[denomination_name] = denomination_worth
         
         elif country == 'Europe':
             for item in lines[1]:
                 item_list = item.split("-")
                 denomination_name = item_list[0] 
-                denomination_worth = item_list[1]
+                denomination_worth = int(item_list[1])
                 denominations[denomination_name] = denomination_worth
         
         elif country == 'Japan':
             for item in lines[2]:
                 item_list = item.split("-")
                 denomination_name = item_list[0] 
-                denomination_worth = item_list[1]
+                denomination_worth = int(item_list[1])
                 denominations[denomination_name] = denomination_worth
         
         elif country == 'England':
             for item in lines[3]:
                 item_list = item.split("-")
                 denomination_name = item_list[0] 
-                denomination_worth = item_list[1]
+                denomination_worth = int(item_list[1])
                 denominations[denomination_name] = denomination_worth
         
         return denominations
 
+
+def needed_amounts(denominations, amount):
+    amounts = []
+    number_of_items = -1
+    used = []
+    named_used = {}
+
+    for item in denominations:
+        named_used[item] = 0
+
+    for item in denominations:
+        number_of_items += 1
+        amounts.append(denominations[item])
+
+    sorted_amounts = sorted(amounts, reverse=True)
+
+    for item in sorted_amounts:
+
+        while True:
+            if amount >= item:
+                used.append(item)
+                amount -= item
+                continue
+
+            else:
+                break
+
+    for item in used:
+        for i in denominations:
+            if item == denominations[i]:
+                named_used[i] += 1
+    
+    return(named_used)
+
+
+denominations = pull_denominations("Country name (needs to be a input)")
+used = needed_amounts(denominations, ("Amount (needs to be a input)"))
