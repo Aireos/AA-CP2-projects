@@ -9,6 +9,7 @@ def coin_amounts(denominations, amount):
         used = []
         named_used = {}
 
+        #making list of possible used coins
         for item in denominations:
             named_used[item] = 0
 
@@ -16,8 +17,10 @@ def coin_amounts(denominations, amount):
             number_of_items += 1
             amounts.append(denominations[item])
 
+        #sorting possible coins from highest to lowest
         sorted_amounts = sorted(amounts, reverse=True)
 
+        #finding the used coins
         for item in sorted_amounts:
             while True:
                 if amount >= item:
@@ -28,6 +31,7 @@ def coin_amounts(denominations, amount):
                 else:
                     break
 
+        #changing the coins from money form to name form
         for item in used:
             for i in denominations:
                 if item == denominations[i]:
