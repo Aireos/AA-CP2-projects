@@ -5,7 +5,7 @@ import csv
 def pull_denominations(country):
     denominations = {}
 
-    with open("Personal Projects\Coin Change Problem\coin_denominations.csv", "r", newline='') as file:
+    with open("Personal Projects/Coin Change Problem/coin_denominations.csv", "r", newline='') as file:
         reader = csv.reader(file)
         lines = []
         for line in reader:
@@ -85,3 +85,5 @@ def main():
     
     for i in used:
         print("You need to have",i,used[i])
+
+main()
