@@ -75,6 +75,13 @@ def needed_amounts(denominations, amount):
     
     return(named_used)
 
-
-denominations = pull_denominations("Country name (needs to be a input)")
-used = needed_amounts(denominations, ("Amount (needs to be a input)"))
+def main():
+    print("Welcome to the coin change machiene!")
+    country = input("What country's currency are you using (Usa, Europe, Japan, or England): ").strip().capitalize()
+    denominations = pull_denominations(country)
+    amount = int(input("What is the amount of money you need?: "))
+    amount = amount*100
+    used = needed_amounts(denominations, amount)
+    
+    for i in used:
+        print("You need to have",i,used[i])
