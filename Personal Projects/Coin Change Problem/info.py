@@ -2,16 +2,19 @@
 
 import csv
 
+#function to pull all the denominations from the given country
 def info_pull(country):
     def pull_denominations(country):
         denominations = {}
 
+        #using coin denominations csv that has all of the countrys info
         with open("Personal Projects/Coin Change Problem/coin_denominations.csv", "r", newline='') as file:
             reader = csv.reader(file)
             lines = []
             for line in reader:
                 lines.append(line)
 
+            #Using the selected country to just pull the denominations from the selected country instead of all the countrys
             if country == 'Usa':
                 for item in lines[0]:
                     item_list = item.split("-")

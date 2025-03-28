@@ -1,7 +1,9 @@
 #Alex Anderson, Coin Change Problem, coin calculator
 
+#function to find the amount of each coin that they need
 def coin_amounts(denominations, amount):
     def needed_amounts(denominations, amount):
+        #defining varaibles
         amounts = []
         number_of_items = -1
         used = []

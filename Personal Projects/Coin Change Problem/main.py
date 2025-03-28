@@ -3,9 +3,12 @@
 from info import *
 from calculator import *
 
+#main user interface
 def main():
+    #telling the uesr what it is
     print("Welcome to the coin change machiene!")
 
+    #having them select which countrys currency they want to use
     countrys = ["Usa", "Europe", "Japan", "England"]
     while True:
         country = input("What country's currency are you using (Usa, Europe, Japan, or England): ").strip().capitalize()
@@ -14,6 +17,7 @@ def main():
             continue
         break
 
+    #having them select the amount of money they need
     denominations = info_pull(country)
     while True:
         try: 
@@ -22,9 +26,11 @@ def main():
         except:
             print("please follow the guide for what to type")
             continue
-        
+
+    #finds how much of each coin they need
     used = coin_amounts(denominations, amount)
     
+    #prints how much of each coin they need
     for i in used:
         print("You need to have",i,used[i])
 
