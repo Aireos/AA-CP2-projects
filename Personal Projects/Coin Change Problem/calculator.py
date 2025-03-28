@@ -17,7 +17,6 @@ def coin_amounts(denominations, amount):
         sorted_amounts = sorted(amounts, reverse=True)
 
         for item in sorted_amounts:
-            print(type(item))
             while True:
                 if amount >= item:
                     used.append(item)
