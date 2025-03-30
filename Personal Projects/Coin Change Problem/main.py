@@ -32,6 +32,6 @@ def main():
     
     #prints how much of each coin they need
     for i in used:
-        print("You need to have",i,used[i])
+        print("You need to have",used[i],i)
 
 main()
