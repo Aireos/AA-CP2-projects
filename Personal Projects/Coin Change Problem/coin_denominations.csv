@@ -1,4 +1,4 @@
-penny-1,nickel-5,dime-10,quarter-25
-cent-1,two cent-2,five cent-5,ten cent-10,twenty cent-20,euro-100,two euro-200
-yen-1,five yen-5,ten yen-10,fiftey yen-50,hundred yen-100,five hundred yen-500
-pence-1,two pence-2,five pence-5,ten pence-10,twenty pence-20,fiftey pence-50,pound-100,two pound-200, five pound-500
+cent-1,two cent-2,five cent-5,ten cent-10,twenty five cent-25,fifty cent-50,dollar-100,two dollar-200,five dollar-500,ten dollar-1000,twenty dollar-2000,fifty dollar-5000,hundred dollar-10000,five hundred dollar-50000,thousand dollar-100000,five thousand dollar-500000,ten thousand dollar-1000000,hundred thousand dollar-10000000
+cent-1,two cent-2,five cent-5,ten cent-10,twenty cent-20,fifty cent-50,euro-100,two euro-200,five euro-500,ten euro-1000,twenty euro-2000,fifty euro-5000,hundred euro-10000,two hundred euro-20000,five hundred euro-50000
+one yen-1,five yen-5,ten yen-10,fifty yen-50,hundred yen-100,five hundred yen-500,thousand yen-1000,two thousand yen-2000,five thousand yen-5000,ten thousand yen-10000
+one penny-1,two pence-2,five pence-5,ten pence-10,twenty pence-20,fifty pence-50,one pound-100,two pounds-200,five pounds-500,ten pounds-1000,twenty pounds-2000,fifty pounds-5000,hundred pounds-10000
