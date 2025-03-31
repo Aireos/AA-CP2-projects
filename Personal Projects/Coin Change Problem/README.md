@@ -14,6 +14,8 @@ This is for calculating the amount of currency types you need to get to a specif
 + info: pulls the denominations from the currency type they want
 + calculator: calculates the amount of each denomination needed for the amount given
 
+![image](Personal Projects/Coin Change Problem/photo.png)
+
 ## Used Technologies
 ---
 + csv - pulls info from csv files
