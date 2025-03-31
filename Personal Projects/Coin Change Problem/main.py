@@ -5,7 +5,7 @@ from calculator import *
 
 #main user interface
 def main():
-    #telling the uesr what it is
+    #telling the user what it is
     print("Welcome to the coin change machiene!")
 
     #having them select which countrys currency they want to use
