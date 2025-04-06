@@ -1,0 +1,2 @@
+name,class,stats,level,experience,inventory,armor,status_effects,backstory,characteristics
+Aireos,"{'name': 'Mage', 'health': 1, 'strength': 7, 'defense': 1, 'speed': 3}","{'name': 'Mage', 'health': 1, 'strength': 7, 'defense': 1, 'speed': 3}",1,0,{'Health Potion': 3},"{'helmet': None, 'chestplate': None, 'pants': None, 'shoes': None}",[],Fireball,They were a Sports development officer working for Brown-Frost before becoming a adventurer.,"{'Hair': 'LightGoldenRodYellow', 'Eye': 'Brown', 'Height': 169, 'Weight': 89}"
