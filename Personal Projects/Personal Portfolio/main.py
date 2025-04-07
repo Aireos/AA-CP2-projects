@@ -28,6 +28,7 @@ def main():
             print("The battle simulator starts by asking you if you want to add a character, view current characters, battle with the characters, or exit and then does whatever you picked")
             print("programming procces?")
             print("I learned how to use f-string more and how to organize data and save it in a clean manner.")
+            print()
 
 
 main()
