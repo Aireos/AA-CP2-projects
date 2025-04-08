@@ -26,21 +26,21 @@ def main():
 
         elif choice == 1:
             print("The battle simulator starts by asking you if you want to add a character, view current characters, battle with the characters, or exit and then does whatever you picked")
-            print("What was the programming process?")
+            print("Started by making the neccacary files and then proceded to start with character manegment, then did battle, then did the main.py")
             print("I learned how to use f-string more and how to organize data and save it in a clean manner.")
             print("Here is the project:\n")
             battle_sim()
 
         
         elif choice == 2:
-            print("What the project does")
-            print("What was the programming process?")
-            print("What I learned")
+            print("The financial calulator lets you test goals, and have a compound interest calc, budget allotocater, sale price calc, and a tip calc.")
+            print("Started by making the type fixer function that fixes stuff between intigers and floats, then did the interest calc used in the compound calc, and then did the rest in order and ended with the main.py.")
+            print("I learned how to change numbers between intigers and floats and how to use f for float size.")
             print("Here is the project:\n")
             finance_calc()
         
         elif choice == 3:
-            print("What the project does")
+            print("The movie recommender lets you...")
             print("What was the programming process?")
             print("What I learned")
             print("Here is the project:\n")
