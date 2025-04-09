@@ -7,69 +7,82 @@ from movie_recommender import movie_recommender
 from personal_library import personal_library
 from simple_quiz import simple_quiz
 
+alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "]
+morse_alphabet = ["._","_...","_._.","_..",".",".._.","__.","....","..",".___","_._","._..","__","_.","___",".__.","__._","._.","...","_",".._","..._",".__","_.._","_.__","__..",""]
+
+#main function for user inputs
 def main():
-    print("This is my profolio of my top 6 favorite projects I have made by 4/6/2025.")
-    print("I will ask you which one you want to view and it will tell you a short spiel on it and then let you try it out.")
+    print("This is my portfolio of my top 6 favorite projects I have made by 4/6/2025.")
+    print("I will ask you which one you want to view, and it will tell you a short spiel on it and then let you try it out.")
 
     while True:
-        print("\n1. battle simulator \n2. financial calculator \n3. movie recommender \n4. morse code translator \n5. to do list maker \n6. personal song library \n7. Exit")
+        print("\n1. Battle Simulator\n2. Financial Calculator\n3. Movie Recommender\n4. Morse Code Translator")
+        print("5. Simple Quiz\n6. Personal Library\n7. Exit")
 
         try:
             choice = int(input("Choice: "))
-        except:
-            print("That was not a number")
-            continue
-        
-        if choice not in [1,2,3,4,5,6]:
-            print("You can only chose from 1-6")
+            print("\n")
+        except ValueError:
+            print("That was not a number. Please enter a valid option.")
             continue
 
-        elif choice == 1:
-            print("The battle simulator starts by asking you if you want to add a character, view current characters, battle with the characters, or exit and then does whatever you picked")
-            print("Started by making the neccacary files and then proceded to start with character manegment, then did battle, then did the main.py")
-            print("I learned how to use f-string more and how to organize data and save it in a clean manner.")
+        if choice not in range(1, 8):
+            print("You can only choose from 1-7.")
+            continue
+
+        #battle simulater info
+        if choice == 1:
+            print("The Battle Simulator allows you to manage characters and engage in battles.")
+            print("I started by creating the necessary files, focusing on character management.")
+            print("Then, I implemented battles and organized the project structure.")
+            print("I learned a lot from this project including how to use csv files and how to orginize and keep data in a simple way.")
             print("Here is the project:\n")
             battle_sim()
 
-        
+        #financial calculator info
         elif choice == 2:
-            print("The financial calulator lets you test goals, and have a compound interest calc, budget allotocater, sale price calc, and a tip calc.")
-            print("Started by making the type fixer function that fixes stuff between intigers and floats, then did the interest calc used in the compound calc, and then did the rest in order and ended with the main.py.")
-            print("I learned how to change numbers between intigers and floats and how to use f for float size.")
+            print("It lets you test financial goals, calculate compound interest, allocate budgets, and compute tips.")
+            print("I began with a type fixer function and developed features for budgeting and pricing.")
+            print("Then, I added functionalities for calculating interest.")
+            print("I learned how to deal with user inputs better and how to use more math stuff in programming.")
             print("Here is the project:\n")
             finance_calc()
-        
+
+        #movie recommender info
         elif choice == 3:
-            print("The movie recommender lets you...")
-            print("What was the programming process?")
-            print("What I learned")
+            print("The Movie Recommender suggests films based on user preferences.")
+            print("I created a function to read movie data into a dictionary for easy access.")
+            print("I learned about CSV handling and creating an interactive user experience.")
             print("Here is the project:\n")
             movie_recommender()
-        
+
+        #morse code translator info
         elif choice == 4:
-            print("What the project does")
-            print("What was the programming process?")
-            print("What I learned")
+            print("The Morse Code Translator converts text to Morse code and vice versa.")
+            print("I developed functions to handle conversions between English and Morse code.")
+            print("I learned about string manipulation and error handling for user input.")
             print("Here is the project:\n")
-            morse_trans()
-        
+            morse_trans(alphabet, morse_alphabet)
+
+        #simple quiz info
         elif choice == 5:
-            print("What the project does")
-            print("What was the programming process?")
-            print("What I learned")
+            print("The Simple Quiz tests users' math skills with various questions.")
+            print("I created a function to ask questions and check user answers.")
+            print("I learned about control flow and user input management.")
             print("Here is the project:\n")
             simple_quiz()
-        
+
+        #personal library info
         elif choice == 6:
-            print("What the project does")
-            print("What was the programming process?")
-            print("What I learned")
+            print("The Personal Library helps users manage their song collections.")
+            print("I created functions to add, remove, find, and update songs.")
+            print("I learned about data structures and creating an interactive library.")
             print("Here is the project:\n")
             personal_library()
-        
-        elif choice == 7:
-            break
 
+        elif choice == 7:
+            print("Thank you for exploring my projects. Goodbye!")
+            break
 
 
 main()

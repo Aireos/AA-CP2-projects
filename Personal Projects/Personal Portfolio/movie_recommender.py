@@ -1,37 +1,38 @@
-#Alexander Anderson: Movie Recommender
+# Alexander Anderson: Movie Recommender
 
 import csv
+import os
 
 # Function to read the movie data and store it in a dictionary
 def movies_maker():
     movie_dictionary = {}
+
+    # Use relative path and fallback
+    filepath = "Movies list.csv"
+    if not os.path.exists(filepath):
+        filepath = "Personal Projects/Personal Portfolio/Movies list.csv"
     
-    with open("Personal Projects/Personal Portfolio/Movies list.csv", "r") as file:
+    with open(filepath, "r", encoding="utf-8") as file:
         csv_reader = csv.reader(file)
         next(csv_reader)
 
         for row in csv_reader:
-            
-            #making every movie into a dictionary key
+            # Making every movie into a dictionary key
             movie = {
                 "director": row[1],
                 "genre": row[2],
                 "rating": row[3],
                 "length": row[4],
                 "actors": row[5]
-                }
+            }
             movie_name = row[0]
             movie_dictionary[movie_name] = movie
             
     return movie_dictionary
 
-
-
 # Function to create a list of all available movie names
 def filtered_movies_maker(movie_dictionary):
     return list(movie_dictionary.keys())
-
-
 
 # Function to print out all movies with details
 def movies_printer(movie_dictionary):
@@ -46,8 +47,6 @@ def movies_printer(movie_dictionary):
         print(f"Actors: {details['actors']}")
         print("-------------------------------------------------------")
 
-
-
 # Filter movies based on length
 def filter_one(filtered_movies, movie_dictionary):
     while True:
@@ -56,7 +55,6 @@ def filter_one(filtered_movies, movie_dictionary):
             filter_one_movies = []
             sanitized_one = filter_input_one.split("-")
             
-            # Ensure valid integers
             sanitized_one_min = int(sanitized_one[0])
             sanitized_one_max = int(sanitized_one[1]) + 1
             
@@ -67,8 +65,6 @@ def filter_one(filtered_movies, movie_dictionary):
             return filter_one_movies
         except:
             print("Error: Please ensure the length range is in the correct format (example: 100-120). Try again.")
-
-
 
 # Filter movies based on rating
 def filter_two(filtered_movies, movie_dictionary):
@@ -83,8 +79,6 @@ def filter_two(filtered_movies, movie_dictionary):
                     filter_two_movies.append(item)
             return filter_two_movies
 
-
-
 # Filter movies based on director
 def filter_three(filtered_movies, movie_dictionary):
     while True:
@@ -97,8 +91,6 @@ def filter_three(filtered_movies, movie_dictionary):
                 if filter_input_three.lower() in details["director"].lower() and movie_name in filtered_movies:
                     filter_three_movies.append(movie_name)
             return filter_three_movies
-
-
 
 # Filter movies based on actor
 def filter_four(filtered_movies, movie_dictionary):
@@ -113,8 +105,6 @@ def filter_four(filtered_movies, movie_dictionary):
                 if filter_input_four.lower() in [actor.lower() for actor in actors] and movie_name in filtered_movies:
                     filter_four_movies.append(movie_name)
             return filter_four_movies
-
-
 
 # Print out the filtered movies with details
 def print_filtered(filtered_movies, movie_dictionary):
@@ -134,8 +124,6 @@ def print_filtered(filtered_movies, movie_dictionary):
     if movies_found == False:
         print("No movies fit your needs.")
 
-
-
 # Function to display the filter choices
 def filter_choice(filtered_movies, movie_dictionary):
     while True:
@@ -149,18 +137,16 @@ def filter_choice(filtered_movies, movie_dictionary):
 
             filter_choices = input("Enter the numbers of the filters you want to use (separate with commas, example: 1,3) or '5' to print all movies: ").strip()
 
-            #Print all movies because they selected 5
             if filter_choices == '5':
                 print_filtered(filtered_movies, movie_dictionary)
                 return
+
             filters = filter_choices.split(",")
-            
-            #Makes sure that exactly two filters or the number 5 is selected
+
             if len(filters) != 2 or not all(f in ['1', '2', '3', '4'] for f in filters):
                 print("Please enter either two filters (example: 1,2) or 5 to print all movies.")
                 continue
 
-            # Apply filters progressively to the filtered list
             for filter_choice in filters:
                 if filter_choice == '1':
                     filtered_movies = filter_one(filtered_movies, movie_dictionary)
@@ -172,13 +158,11 @@ def filter_choice(filtered_movies, movie_dictionary):
                     filtered_movies = filter_four(filtered_movies, movie_dictionary)
             
             print_filtered(filtered_movies, movie_dictionary)
-            return  #Exits after displaying filtered movies
+            return
 
         except:
             print("Invalid input. Please enter the input correctly.")
 
-
-        
 # Main function to tie everything together
 def movie_recommender():
     while True:
@@ -186,7 +170,6 @@ def movie_recommender():
         filtered_movies = filtered_movies_maker(movie_dictionary)
         filter_choice(filtered_movies, movie_dictionary)
 
-        #makes a chance to do somthing else if they want to
         go_again = input("Do you want to do somthing else?(y or n): ")
         if go_again == "y":
             continue
