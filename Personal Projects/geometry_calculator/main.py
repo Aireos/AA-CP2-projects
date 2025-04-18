@@ -1,114 +1,320 @@
 #Alex Anderson, Geometry Calculator
 
+# Shape classes (unchanged from the previous implementations)
 class Circle:
     def __init__(self, radius):
-        self.radius = radius
+        self.radius = radius if radius > 0 else None
 
     def area(self):
-        return 3.14159 * self.radius ** 2  # Using an approximation for π
+        if self.radius:
+            return round(3.14159 * self.radius ** 2, 2)
+        return None
 
     def perimeter(self):
-        return 2 * 3.14159 * self.radius
+        if self.radius:
+            return round(2 * 3.14159 * self.radius, 2)
+        return None
 
-    def __str__(self):
-        return f"Circle with radius {self.radius}"
+    def formula(self):
+        return "Area: π * radius^2, Perimeter: 2 * π * radius"
+
+    def display_info(self):
+        if self.radius:
+            return f"Circle: Radius = {self.radius}, Area = {self.area()}, Perimeter = {self.perimeter()}"
+        return "Radius must be positive"
+
 
 class Rectangle:
     def __init__(self, length, width):
-        self.length = length
-        self.width = width
+        self.length = length if length > 0 else None
+        self.width = width if width > 0 else None
 
     def area(self):
-        return self.length * self.width
+        if self.length and self.width:
+            return round(self.length * self.width, 2)
+        return None
 
     def perimeter(self):
-        return 2 * (self.length + self.width)
+        if self.length and self.width:
+            return round(2 * (self.length + self.width), 2)
+        return None
 
-    def __str__(self):
-        return f"Rectangle with length {self.length} and width {self.width}"
+    def formula(self):
+        return "Area: length * width, Perimeter: 2 * (length + width)"
 
-class Square(Rectangle):
+    def display_info(self):
+        if self.length and self.width:
+            return f"Rectangle: Length = {self.length}, Width = {self.width}, Area = {self.area()}, Perimeter = {self.perimeter()}"
+        return "Length and width must be positive"
+
+
+class Square:
     def __init__(self, side):
-        super().__init__(side, side)
-
-    def __str__(self):
-        return f"Square with side {self.length}"
-
-class Triangle:
-    def __init__(self, base, height):
-        self.base = base
-        self.height = height
+        self.length = side if side > 0 else None
+        self.width = side if side > 0 else None
 
     def area(self):
-        return 0.5 * self.base * self.height
+        if self.length and self.width:
+            return round(self.length * self.width, 2)
+        return None
 
-    def __str__(self):
-        return f"Triangle with base {self.base} and height {self.height}"
+    def perimeter(self):
+        if self.length and self.width:
+            return round(4 * self.length, 2)
+        return None
 
-# Example usage
-circle = Circle(radius=5)
-triangle = Triangle(base=10, height=8)
-rectangle = Rectangle(length=4, width=6)
-square = Square(side=4)
+    def formula(self):
+        return "Area: side^2, Perimeter: 4 * side"
 
-print(circle)          # Circle with radius 5
-print("Area:", circle.area())  # Area: 78.53975
-print("Perimeter:", circle.perimeter())  # Perimeter: 31.4159
-
-print(triangle)        # Triangle with base 10 and height 8
-print("Area:", triangle.area())  # Area: 40.0
-
-print(rectangle)       # Rectangle with length 4 and width 6
-print("Area:", rectangle.area())  # Area: 24.0
-print("Perimeter:", rectangle.perimeter())  # Perimeter: 20
-
-print(square)          # Square with side 4
-print("Area:", square.area())  # Area: 16.0
-print("Perimeter:", square.perimeter())  # Perimeter: 16
+    def display_info(self):
+        if self.length and self.width:
+            return f"Square: Side = {self.length}, Area = {self.area()}, Perimeter = {self.perimeter()}"
+        return "Side length must be positive"
 
 
-"""Class Implementation:
-Create separate classes for different shapes: Circle, Rectangle, and Triangle
-Implement a Square class as a subclass of Rectangle Include appropriate attributes for each shape (e.g., radius, length, width, base, height)
-Shape Calculations:
-Implement methods to calculate area and perimeter for each shape
-Create a method to display all information about a shape Include a static method in each class to explain the formulas used
-User Interface:
-Design a text-based menu for interacting with the calculator
-Allow users to create multiple shapes and switch between them
-Include options to perform various calculations on the selected shape
-Validation and Error Handling:
-Implement input validation to ensure positive values for dimensions Handle potential errors (e.g., division by zero, invalid input types)
-Shape Comparisons:
-Create methods to compare two shapes (e.g., has_larger_area(), has_longer_perimeter())
-Implement a feature to sort multiple shapes based on a chosen property (area or perimeter)
-Bonus are only available to projects submitted on time that meet ALL of the minimum requirements.
+class Triangle:
+    def __init__(self, length, width):
+        self.length = length if length > 0 else None
+        self.width = width if width > 0 else None
 
-BONUS:
-3D Shape Extension 
+    def area(self):
+        if self.length and self.width:
+            return round(0.5 * self.length * self.width, 2)
+        return None
 
-Design and implement classes for 3D shapes (3 points)
-Create methods for volume and surface area calculations (4 points)
-Extend the user interface to incorporate 3D shape options (5 points)
-Graphical Shape Visualization
+    def formula(self):
+        return "Area: 0.5 * length * width"
 
-Implement basic shape drawing functionality (3 points)
-Scale drawings appropriately based on shape dimensions (4 points)
-Add labels and measurements to the visual representations (5 points)
-Shape Transformation Calculator
+    def display_info(self):
+        if self.length and self.width:
+            return f"Triangle: Length = {self.length}, Width = {self.width}, Area = {self.area()}"
+        return "Length and width must be positive"
 
-(Create functionality to calculate how shapes change when scaled, rotated, or translated. Include methods to determine new coordinates or dimensions after transformations.)
 
-Implement scaling transformations for all shapes (3 points)
-Add rotation calculations for applicable shapes (4 points)
-Create methods for translation and coordinate shifts (5 points)
-SUBMISSION:
-Submit a link to your completed project on GitHub in properly structured folders.
+# 3d shape classes
+class Sphere:
+    def __init__(self, radius):
+        self.radius = radius if radius > 0 else None
 
-NOTES:
-Ensure your program uses proper mathematical formulas for all calculations
-Comment your code to explain the purpose of each method and any complex logic
-Use appropriate naming conventions for classes, methods, and variables
-Round results to a reasonable number of decimal places for readability
-Consider the user experience when designing your text-based interface
-Test your program thoroughly to ensure all calculations are accurate"""
+    def volume(self):
+        if self.radius:
+            return round((4 / 3) * 3.14159 * self.radius ** 3, 2)
+        return None
+
+    def surface_area(self):
+        if self.radius:
+            return round(4 * 3.14159 * self.radius ** 2, 2)
+        return None
+
+    def formula(self):
+        return "Volume: (4/3) * π * radius^3, Surface Area: 4 * π * radius^2"
+
+    def display_info(self):
+        if self.radius:
+            return f"Sphere: Radius = {self.radius}, Volume = {self.volume()}, Surface Area = {self.surface_area()}"
+        return "Radius must be positive"
+
+
+class Cube:
+    def __init__(self, side):
+        self.side = side if side > 0 else None
+
+    def volume(self):
+        if self.side:
+            return round(self.side ** 3, 2)
+        return None
+
+    def surface_area(self):
+        if self.side:
+            return round(6 * (self.side ** 2), 2)
+        return None
+
+    def formula(self):
+        return "Volume: side^3, Surface Area: 6 * side^2"
+
+    def display_info(self):
+        if self.side:
+            return f"Cube: Side = {self.side}, Volume = {self.volume()}, Surface Area = {self.surface_area()}"
+        return "Side length must be positive"
+
+
+class Cuboid:
+    def __init__(self, length, width, height):
+        self.length = length if length > 0 else None
+        self.width = width if width > 0 else None
+        self.height = height if height > 0 else None
+
+    def volume(self):
+        if self.length and self.width and self.height:
+            return round(self.length * self.width * self.height, 2)
+        return None
+
+    def surface_area(self):
+        if self.length and self.width and self.height:
+            return round(2 * (self.length * self.width + self.length * self.height + self.width * self.height), 2)
+        return None
+
+    def formula(self):
+        return "Volume: length * width * height, Surface Area: 2 * (lw + lh + wh)"
+
+    def display_info(self):
+        if self.length and self.width and self.height:
+            return f"Cuboid: Length = {self.length}, Width = {self.width}, Height = {self.height}, Volume = {self.volume()}, Surface Area = {self.surface_area()}"
+        return "Dimensions must be positive"
+
+
+class Cylinder:
+    def __init__(self, radius, height):
+        self.radius = radius if radius > 0 else None
+        self.height = height if height > 0 else None
+
+    def volume(self):
+        if self.radius and self.height:
+            return round(3.14159 * self.radius ** 2 * self.height, 2)
+        return None
+
+    def surface_area(self):
+        if self.radius and self.height:
+            return round(2 * 3.14159 * self.radius * (self.radius + self.height), 2)
+        return None
+
+    def formula(self):
+        return "Volume: π * radius^2 * height, Surface Area: 2 * π * radius * (radius + height)"
+
+    def display_info(self):
+        if self.radius and self.height:
+            return f"Cylinder: Radius = {self.radius}, Height = {self.height}, Volume = {self.volume()}, Surface Area = {self.surface_area()}"
+        return "Radius and height must be positive"
+
+
+# User Interface
+def main():
+    print("\nGeometry Calculator:")
+    shapes = []
+    
+    while True:
+        try:
+            print("\n1. Create a Circle")
+            print("2. Create a Rectangle")
+            print("3. Create a Square")
+            print("4. Create a Triangle")
+            print("5. Create a Sphere")
+            print("6. Create a Cube")
+            print("7. Create a Cuboid")
+            print("8. Create a Cylinder")
+            print("9. View All Shapes")
+            print("10. Compare Shapes")
+            print("11. View Shape Formulas")
+            print("12. Exit")
+            choice = input("Enter your choice: ")
+
+            if choice == "1":
+                radius = float(input("Enter the radius of the circle: "))
+                shapes.append(Circle(radius))
+
+            elif choice == "2":
+                length = float(input("Enter the length of the rectangle: "))
+                width = float(input("Enter the width of the rectangle: "))
+                shapes.append(Rectangle(length, width))
+
+            elif choice == "3":
+                side = float(input("Enter the side length of the square: "))
+                shapes.append(Square(side))
+
+            elif choice == "4":
+                length = float(input("Enter the length of the triangle: "))
+                width = float(input("Enter the width of the triangle: "))
+                shapes.append(Triangle(length, width))
+
+            elif choice == "5":
+                radius = float(input("Enter the radius of the sphere: "))
+                shapes.append(Sphere(radius))
+
+            elif choice == "6":
+                side = float(input("Enter the side length of the cube: "))
+                shapes.append(Cube(side))
+
+            elif choice == "7":
+                length = float(input("Enter the length of the cuboid: "))
+                width = float(input("Enter the width of the cuboid: "))
+                height = float(input("Enter the height of the cuboid: "))
+                shapes.append(Cuboid(length, width, height))
+
+            elif choice == "8":
+                radius = float(input("Enter the radius of the cylinder: "))
+                height = float(input("Enter the height of the cylinder: "))
+                shapes.append(Cylinder(radius, height))
+
+            elif choice == "9":
+                if not shapes:
+                    print("No shapes created yet")
+                else:
+                    for i, shape in enumerate(shapes, 1):
+                        print(f"{i}. {shape.display_info()}")
+
+            elif choice == "10":
+                if len(shapes) < 2:
+                    print("At least two shapes are needed to compare")
+                else:
+                    idx1 = int(input("Enter the number of the first shape: ")) - 1
+                    idx2 = int(input("Enter the number of the second shape: ")) - 1
+                    shape1 = shapes[idx1]
+                    shape2 = shapes[idx2]
+
+                    print("\nComparison Results:")
+                    try:
+                        if shape1.area() and shape2.area():
+                            if shape1.area() > shape2.area():
+                                print("Shape 1 has a larger area")
+                            elif shape1.area() < shape2.area():
+                                print("Shape 2 has a larger area")
+                            else:
+                                print("Both shapes have the same area")
+                    except:
+                        pass
+
+                    try:
+                        if shape1.perimeter() and shape2.perimeter():
+                            if shape1.perimeter() > shape2.perimeter():
+                                print("Shape 1 has a longer perimeter")
+                            elif shape1.perimeter() < shape2.perimeter():
+                                print("Shape 2 has a longer perimeter")
+                            else:
+                                print("Both shapes have the same perimeter")
+                    except:
+                        pass
+
+                    try:
+                        if shape1.volume() and shape2.volume():
+                            if shape1.volume() > shape2.volume():
+                                print("Shape 1 has a larger volume")
+                            elif shape1.volume() < shape2.volume():
+                                print("Shape 2 has a larger volume")
+                            else:
+                                print("Both shapes have the same volume")
+                    except:
+                        pass
+
+            elif choice == "11":
+                print("\nShape Formulas:")
+                print("1. Circle: " + Circle(1).formula())
+                print("2. Rectangle: " + Rectangle(1, 1).formula())
+                print("3. Square: " + Square(1).formula())
+                print("4. Triangle: " + Triangle(1, 1).formula())
+                print("5. Sphere: " + Sphere(1).formula())
+                print("6. Cube: " + Cube(1).formula())
+                print("7. Cuboid: " + Cuboid(1, 1, 1).formula())
+                print("8. Cylinder: " + Cylinder(1, 1).formula())
+
+            elif choice == "12":
+                print("Goodbye")
+                break
+
+            else:
+                print("Invalid input")
+        except:
+            print("Invalid input")
+
+
+# runs the program
+main()
