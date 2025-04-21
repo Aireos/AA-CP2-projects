@@ -1,6 +1,6 @@
 #Alex Anderson, Geometry Calculator
 
-# Shape classes (unchanged from the previous implementations)
+# Shape classes
 class Circle:
     def __init__(self, radius):
         self.radius = radius if radius > 0 else None
@@ -255,6 +255,10 @@ def main():
             elif choice == "10":
                 if len(shapes) < 2:
                     print("At least two shapes are needed to compare")
+                
+                for shape in shapes:
+                    print(f"\n{shape}")
+
                 else:
                     idx1 = int(input("Enter the number of the first shape: ")) - 1
                     idx2 = int(input("Enter the number of the second shape: ")) - 1
