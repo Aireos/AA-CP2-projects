@@ -254,7 +254,7 @@ def main():
 
             elif choice == "10":
                 if len(shapes) < 2:
-                    print("At least two shapes are needed to compare")
+                    print("You need at least two shapes are needed to compare")
                 
                 for shape in shapes:
                     print(f"\n{shape}")
