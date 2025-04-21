@@ -12,7 +12,7 @@ This is for making varios shapes and comparing and seeing all of their values
 + main: asks user what choice they wamnt to do
 + shape classes: calculates all of the shapes values based on the given info
 
-![image](Personal Projects/geometry_calculator/photo.png)
+![image](Personal Projects\geometry_calculator\geometry calculator.png)
 
 ## Used Technologies
 ---

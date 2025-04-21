@@ -256,10 +256,13 @@ def main():
                 if len(shapes) < 2:
                     print("You need at least two shapes are needed to compare")
                 
+                number = 0
                 for shape in shapes:
-                    print(f"\n{shape}")
+                    number += 1
+                    print(f"\n{number}. {shape.display_info()}")
 
                 else:
+                    print("\n")
                     idx1 = int(input("Enter the number of the first shape: ")) - 1
                     idx2 = int(input("Enter the number of the second shape: ")) - 1
                     shape1 = shapes[idx1]
