@@ -22,7 +22,7 @@ if moveError:
     while True:
         try:
             screenSize = int(int(input("What do you want your screen size to be? (Higher = buggier): ")) / 2)
-            while screenSize not in range(5, 16):
+            while screenSize not in range(5, 30):
                 print("Input out of range. Try again.")
                 screenSize = int(int(input("What do you want your screen size to be? (range from 10-30): ")) / 2)
             else:
@@ -245,7 +245,7 @@ if moveError:
             print(mapBoard)
         else:
             displayScreen()
-        time.sleep(0.25)
+        time.sleep(0.05)
 
 def choices(): #Every item in the game that can be both picked up and used. Gives the action you can do with the item, and what that action does.
     choiceReturns = []
@@ -461,9 +461,9 @@ prevZone = copy.copy(zone())
 while moveError: #The loop that starts running the game. Includes a method of restarting the game on death.
     if prevZone != zone():
         print()
-        print(f"Entering new zone! Welcome to: {zone()}!")
-        prevZone = copy.copy(zone())
-        time.sleep(2)
+        # print(f"Entering new zone! Welcome to: {zone()}!")
+        # prevZone = copy.copy(zone())
+        # time.sleep(2)
     move()
     playerPos = move()
     playMap()
