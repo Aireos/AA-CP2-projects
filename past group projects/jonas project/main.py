@@ -483,7 +483,7 @@ while moveError: #The loop that starts running the game. Includes a method of re
                 else:
                     print('Invalid input. Try again.')
                     restartGame = input('Game over. Play again? Y/n: ').lower()
-    elif random.randint(1, 100) == 1 and zone() not in ["Nowhere", "Rolling Hills"]:
+    elif random.randint(1, 10000) == 1 and zone() not in ["Nowhere", "Rolling Hills"]:
         if 'dead' in combat(zoneEnemies()):
             restartGame = input('Game over. Play again? Y/n: ').lower()
             while True:
