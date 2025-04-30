@@ -1,5 +1,7 @@
 #Alex Anderson, Somthing to do if I am bored
 
+import random
+
 classes = ["","","",""]
 #
 classes_info = [[],[],[],[]]
@@ -45,5 +47,34 @@ def race_choice(races, races_info):
         race_info = races_info[number]
         return(race, race_info)
 
+def d_six():
+    return(random.randint(1, 6))
+
+def stat_decider():
+    stat_list = []
+    for number in range(6):
+        stat_1 = d_six()
+        stat_2 = d_six()
+        stat_3 = d_six()
+        stat_4 = d_six()
+        top_three = (sorted([stat_1, stat_2, stat_3, stat_4]))[:3]
+        stat = 0
+        for item in top_three:
+            stat += item
+        stat_list.append(stat)
+    return stat_list
+        
+        
+
+
+
+
 def main():
-    print("Welcome to the automatic dnd character creator!")
+    while True:
+        print("Welcome to the automatic dnd character creator!")
+        stat_list = stat_decider()
+        print(stat_list)
+        return
+        
+
+main()
